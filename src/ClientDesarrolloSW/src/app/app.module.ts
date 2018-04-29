@@ -2,23 +2,41 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
-import { CarroService } from './services/carro.service';
+import { RouterModule, Routes } from '@angular/router';
 
+//Componentes
 import { AppComponent } from './app.component';
 import { CarroComponent } from './components/carro/carro.component';
+import { ComputadorComponent } from './components/computador/computador.component';
+import { HomeComponent } from './components/home/home.component';
 
+//Servicios
+import { CarroService } from './services/carro.service';
+import { ComputadorService } from "./services/computador.service";
+
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent},
+  { path: 'carros', component: CarroComponent },
+  { path: 'computadores', component: ComputadorComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarroComponent
+    CarroComponent,
+    ComputadorComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [CarroService],
+  providers: [
+    CarroService,
+    ComputadorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
