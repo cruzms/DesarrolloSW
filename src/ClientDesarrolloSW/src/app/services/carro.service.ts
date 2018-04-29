@@ -21,7 +21,7 @@ export class CarroService {
     return this.http.delete(`${this.domain}/api/carros/${id}`)
     .map(res => res); 
   }
-  updateCarro(ActualizarCarro){
+  updateCarro(ActualizarCarro : Carro){
     return this.http.put(`${this.domain}/api/carros/${ActualizarCarro._id}`,ActualizarCarro)
     .map(res => res);
   }
