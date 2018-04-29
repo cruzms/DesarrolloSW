@@ -19,6 +19,7 @@ db.on('error', (err) => {
 const app = express();
 const indexRouter = require('./routes/index');
 const computadoresRouter = require('./routes/computadores');
+const carrosRouter = require('./routes/carros');
 
 app.set('port', process.env.PORT || 3000);
 
@@ -29,7 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter); 
 app.use('/api', computadoresRouter);
+app.use('/api', carrosRouter);
 
 app.listen(app.get('port'), () => {
-    console.log('Server port 3000')
+    console.log('Server port',app.get('port'));
 });
