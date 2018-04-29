@@ -18,6 +18,7 @@ db.on('error', (err) => {
 
 const app = express();
 const indexRouter = require('./routes/index');
+const computadoresRouter = require('./routes/computadores');
 
 app.set('port', process.env.PORT || 3000);
 
@@ -27,6 +28,7 @@ app.use(express.urlencoded({extended : false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter); 
+app.use('/api', computadoresRouter);
 
 app.listen(app.get('port'), () => {
     console.log('Server port 3000')
