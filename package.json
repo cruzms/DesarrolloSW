@@ -2,7 +2,7 @@
   "name": "desarrollosw",
   "version": "1.0.0",
   "description": "Proyecto Ing de Software III",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

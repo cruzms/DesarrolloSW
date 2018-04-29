@@ -1,0 +1,71 @@
+<div class="card">
+  <div class="card-body">
+    <form (submit)="addCarro($event)">
+      <h3>Agregar carro</h3>
+      <div class="input-group">
+        <input type="text" name="marca" [(ngModel)]="marca" placeholder="Marca" class="form-control">
+        <input type="text" name="modelo" [(ngModel)]="modelo" placeholder="Modelo" class="form-control">
+        <input type="text" name="color" [(ngModel)]="color" placeholder="Color" class="form-control">
+        <input type="text" name="placa" [(ngModel)]="placa" placeholder="Placa" class="form-control">
+        <input type="text" name="puertas" [(ngModel)]="puertas" placeholder="# puertas" class="form-control">
+        <input type="text" name="peso" [(ngModel)]="peso" placeholder="Peso" class="form-control">
+        <input type="text" name="ano" [(ngModel)]="ano" placeholder="Año" class="form-control">
+        <span class="input-group-addon">
+          <button type="submit" class="btn btn-success">
+            <i class="fa fa-plus"></i>
+          </button>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Color</th>
+      <th>Placa</th>
+      <th># Puertas</th>
+      <th>Peso (kg)</th>
+      <th>Año</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let carro of carros">
+      <td>
+        {{carro.marca}}
+      </td>
+      <td>
+        {{carro.modelo}}
+      </td>
+      <td>
+        {{carro.color}}
+      </td>
+      <td>
+        {{carro.placa}}
+      </td>
+      <td>
+        {{carro.puertas}}
+      </td>
+      <td>
+        {{carro.peso}}
+      </td>
+      <td>
+        {{carro.ano}}
+      </td>
+      <td>
+        <div class="btn-group">
+          <button class="btn btn-info" >
+            <i class="fa fa-edit"></i>
+          </button>
+          <button class="btn btn-danger" (click)="deleteCarro(carro._id)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

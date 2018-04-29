@@ -17,21 +17,26 @@ db.on('error', (err) => {
 });
 
 const app = express();
-const indexRouter = require('./routes/index');
+//const indexRouter = require('./routes/index');
 const computadoresRouter = require('./routes/computadores');
 const carrosRouter = require('./routes/carros');
 
 app.set('port', process.env.PORT || 3000);
 
+//Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
+
+//Static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter); 
+//Routes
+//app.use('/', indexRouter); 
 app.use('/api', computadoresRouter);
 app.use('/api', carrosRouter);
 
+//Start server
 app.listen(app.get('port'), () => {
     console.log('Server port',app.get('port'));
 });
