@@ -4,15 +4,15 @@ const Computador = require('../models/computador');
 
 router.get('/computadores', (req, res) => {
     Computador.find((err, computadores) => {
-        if (err) return res.json({ message: err });
-        res.json(computadores);
+        if (err) return res.status(400).json({ message: err });
+        res.status(200).json(computadores);
     });
 });
 
 router.get('/computadores/:id', (req, res) => {
     Computador.findOne({ _id: req.params.id }, (err, computador) => {
-        if (err) return res.json({ message: err });
-        res.json(computador);
+        if (err) return res.status(400).json({ message: err });
+        res.status(200).json(computador);
     });
 });
 
@@ -29,23 +29,23 @@ router.post('/computadores', (req, res) => {
 
     nuevoPC.save((err, nuevoPC) => {
         if (err) {
-            return res.json({ codigo: err });
+            return res.status(400).json({ message: err });
         }
-        res.json({ codigo: 'producto agregado' });
+        res.status(200).json({ message: 'producto agregado', object: nuevoPC });
     });
 });
 
 router.delete('/computadores/:id', (req, res) => {
     Computador.remove({ _id: req.params.id }, (err) => {
-        if (err) return res.json({ message: err });
-        res.json({ codigo: 'producto eliminado' });
+        if (err) return res.status(400).json({ message: err });
+        res.status(200).json({ message: 'producto eliminado' });
     });
 });
 
 router.put('/computadores/:id', (req, res) => {
-    Computador.update({_id: req.params.id} , req.body, (err,raw) => {
-        if (err) return res.json({ message: err });
-        res.json({ codigo: 'producto modificado' });
+    Computador.update({ _id: req.params.id }, req.body, { runValidators: true }, (err, raw) => {
+        if (err) return res.status(400).json({ message: err });
+        res.status(201).json({ message: 'producto modificado' });
     });
 });
 

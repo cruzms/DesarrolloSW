@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
 
 const computadorSchema = mongoose.Schema({
-    marca: String,
-    modelo: String,
+    marca: {
+        type: String,
+        required: [true, 'Marca es obligatorio']
+    },
+    modelo: {
+        type: String,
+        required: [true, 'Modelo es obligatorio']
+    },
     discoduro: Number,
     ram: Number,
     procesador: String,

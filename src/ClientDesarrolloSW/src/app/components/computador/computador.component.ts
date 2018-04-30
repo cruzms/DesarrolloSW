@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FlashMessagesService } from 'angular2-flash-messages';
 import { ComputadorService } from "../../services/computador.service";
 import { Computador } from '../../models/Computador';
 
@@ -18,7 +19,7 @@ export class ComputadorComponent implements OnInit {
   disponible: Boolean;
   computadores: Computador[];
 
-  constructor(private computadorService: ComputadorService) {
+  constructor(private computadorService: ComputadorService, private flashService: FlashMessagesService) {
 
   }
 
@@ -40,9 +41,15 @@ export class ComputadorComponent implements OnInit {
     }
 
     this.computadorService.addComputador(newComputador).subscribe(data => {
-      console.log(data);
-    });
-    this.computadores.push(newComputador);
+      this.flashService.show(data.message, { cssClass: 'alert-success', timeout: 1000 })
+      this.computadores.push(data.object);
+    },
+      err => {
+        const errores = err.error.message.errors;
+        for (let key in errores) {
+          this.flashService.show(errores[key].message, { cssClass: 'alert-danger', timeout: 3000 })
+        }
+      });
   }
 
   cargarComputadorUpdate(computador) {
@@ -58,7 +65,7 @@ export class ComputadorComponent implements OnInit {
 
   updateComputador() {
     const newComputador = {
-      id: this.id,
+      _id: this.id,
       marca: this.marca,
       modelo: this.modelo,
       discoduro: this.discoduro,
@@ -69,17 +76,21 @@ export class ComputadorComponent implements OnInit {
     }
 
     this.computadorService.updateComputador(newComputador).subscribe(data => {
-      console.log(data);
-      const computador = this.computadores.find(computador => computador._id == newComputador.id);
+      this.flashService.show(data.message, { cssClass: 'alert-success', timeout: 1000 })
+      const computador = this.computadores.find(computador => computador._id == newComputador._id);
       const index = this.computadores.indexOf(computador);
       this.computadores[index] = newComputador;
+    }, err => {
+      this.flashService.show("Ha ocurrido un error", { cssClass: 'alert-danger', timeout: 3000 })
     });
   }
 
   deleteComputador(id) {
     this.computadorService.deleteComputador(id).subscribe(data => {
-      console.log(data);
+      this.flashService.show(data.message, { cssClass: 'alert-success', timeout: 1000 })
       this.computadores = this.computadores.filter(computador => computador._id != id);
+    }, err => {
+      this.flashService.show("Ha ocurrido un error", { cssClass: 'alert-danger', timeout: 3000 })
     });
   }
 }
