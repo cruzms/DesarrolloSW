@@ -18,8 +18,8 @@ router.get('/computadores/:id', (req, res) => {
 
 router.post('/computadores', (req, res) => {
     let nuevoPC = new Computador({
-        marca: req.body.nombre,
-        modelo: req.body.correo,
+        marca: req.body.marca,
+        modelo: req.body.modelo,
         discoduro: req.body.discoduro,
         ram: req.body.ram,
         procesador: req.body.procesador,
