@@ -20,6 +20,7 @@ const app = express();
 //const indexRouter = require('./routes/index');
 const computadoresRouter = require('./routes/computadores');
 const carrosRouter = require('./routes/carros');
+const cuentasRouter = require('./routes/cuentas');
 
 app.set('port', process.env.PORT || 3000);
 
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/', indexRouter); 
 app.use('/api', computadoresRouter);
 app.use('/api', carrosRouter);
+app.use('/api',cuentasRouter);
 
 //Start server
 app.listen(app.get('port'), () => {
