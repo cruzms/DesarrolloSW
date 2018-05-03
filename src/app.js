@@ -18,9 +18,7 @@ db.on('error', (err) => {
 
 const app = express();
 //const indexRouter = require('./routes/index');
-const computadoresRouter = require('./routes/computadores');
-const carrosRouter = require('./routes/carros');
-const cuentasRouter = require('./routes/cuentas');
+const catalogoApiRouter = require('./routes/catalogoApi');
 
 app.set('port', process.env.PORT || 3000);
 
@@ -33,10 +31,8 @@ app.use(express.urlencoded({extended : false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Routes
-//app.use('/', indexRouter); 
-app.use('/api', computadoresRouter);
-app.use('/api', carrosRouter);
-app.use('/api',cuentasRouter);
+//app.use('/', indexRouter);
+app.use('/api', catalogoApiRouter);
 
 //Start server
 app.listen(app.get('port'), () => {

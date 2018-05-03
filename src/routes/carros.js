@@ -2,21 +2,21 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const Carro = require('../models/carro');
 
-router.get('/carros', (req, res) => {
+router.get('/', (req, res) => {
     Carro.find((err, carros) => {
         if (err) return res.json({ Message: err });
         res.status(200).json(carros);
     });
 });
 
-router.get('/carros/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     Carro.findOne({ _id: req.params.id }, (err, carro) => {
         if (err) return res.json({ Message: err });
         res.json(carro);
     });
 });
 
-router.post('/carros', (req, res) => {
+router.post('/', (req, res) => {
     const carro = req.body;
     let nuevoCarro = new Carro({
         marca: carro.marca,
@@ -36,14 +36,14 @@ router.post('/carros', (req, res) => {
     });
 });
 
-router.delete('/carros/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     Carro.remove({ _id: req.params.id }, (err) => {
         if (err) return res.json({ message: err });
         res.status(200).json({Message : "Carro eliminado"});
     });
 });
 
-router.put('/carros/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     Carro.update({_id: req.params.id} , req.body, (err) => {
         if (err) return res.json({ message: err });
         res.status(200).json({Message : "Carro modificado"});
