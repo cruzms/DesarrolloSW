@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
 
 /**
 * {post} /api/carros Agrega un carro al sistema
-* @param {String} (Request body) - objeto carro
+* @param {String} req.body - objeto carro
 * @return {(String|carro)} Un mensaje indicando si no se adicionó el carro o el objeto carro adicionado
 */
 router.post('/', (req, res) => {
