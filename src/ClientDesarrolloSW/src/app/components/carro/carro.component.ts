@@ -61,7 +61,7 @@ export class CarroComponent implements OnInit {
 
   /**
   * función encargada de eliminar un carro por medio de un id ingresado por interfaz
-  * @param {number} id del carro a eliminar
+  * @param id del carro a eliminar
   */
   deleteCarro(id) {
     const response = confirm('¿Estás seguro de eliminar?');
@@ -112,15 +112,17 @@ export class CarroComponent implements OnInit {
     };
     this.carroService.updateCarro(updateCarro).subscribe(data => {
       const carros = this.carros;
-      if (JSON.stringify(data) === '{\"Message\':\'Carro modificado\'}') {
+      console.log(JSON.stringify(data));
+      if (JSON.stringify(data) === '{\"Message\":\"Carro modificado\"}') {
         for (let i = 0; i < carros.length; i++) {
           if (carros[i]._id === updateCarro._id) {
             carros.splice(i, 1);
             this.carros.push(updateCarro);
+            alert('Carro actualizado correctamente.');
           }
         }
       } else {
-        alert('Error, Carro no eliminado.');
+        alert('Error, Carro no actualizado.');
       }
       this.resetearValores();
     });
