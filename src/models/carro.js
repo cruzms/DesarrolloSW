@@ -1,5 +1,10 @@
-const mongoose = require('mongoose');
+/**
+ * @description Modelo carro
+ * @author Yonifer Gallego Aguirre
+ * @version 1.0
+ */
 
+const mongoose = require('mongoose');
 const carroSchema = mongoose.Schema({
     marca: String,
     modelo: String,
