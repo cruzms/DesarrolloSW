@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Computador } from "../models/Computador";
+import { Computador } from '../models/Computador';
 import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class ComputadorService {
-  domain: string = "http://localhost:3000/api/computadores";
+  domain = '/api/computadores';
   constructor(private http: HttpClient) { }
 
   getComputadores() {

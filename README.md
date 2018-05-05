@@ -26,6 +26,13 @@ DesarrolloSW> npm install -g nodemon
 ```
 
 Para instalar angular
+
+```
+DesarrolloSW> npm install -g @angular/cli
+```
+
+Para instalar dependencias de angular
+
 ```
 DesarrolloSW> cd src/ClientDesarrolloSW
 ClientDesarrolloSW> npm install
