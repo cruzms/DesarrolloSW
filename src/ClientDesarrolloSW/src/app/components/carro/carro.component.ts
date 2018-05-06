@@ -1,6 +1,12 @@
+/**
+ * @description Componente encargado de relacionar la interfaz grafica con los modelos
+ * @author Yonifer Gallego Aguirre
+ * @version 1.0
+ */
+
 import { Component, OnInit } from '@angular/core';
-import { CarroService } from "../../services/carro.service"
-import { Carro } from "../../models/Carro";
+import { CarroService } from '../../services/carro.service';
+import { Carro } from '../../models/Carro';
 
 @Component({
   selector: 'app-carro',
@@ -19,6 +25,10 @@ export class CarroComponent implements OnInit {
   peso: number;
   ano: number;
   carros: Carro[];
+
+  /**
+  * Contructor, inicializa los servicios del carro
+  */
   constructor(private carroService: CarroService) {
     this.Updateoculto = true;
     this.Addoculto = false;
@@ -30,6 +40,9 @@ export class CarroComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+  * función encargada de agregar un carro ingresado por interfaz
+  */
   addCarro() {
     const newCarro: Carro = {
       marca: this.marca,
@@ -46,14 +59,18 @@ export class CarroComponent implements OnInit {
     });
   }
 
+  /**
+  * función encargada de eliminar un carro por medio de un id ingresado por interfaz
+  * @param id del carro a eliminar
+  */
   deleteCarro(id) {
-    const response = confirm("¿Estás seguro de eliminar?")
+    const response = confirm('¿Estás seguro de eliminar?');
     if (response) {
       const carros = this.carros;
       this.carroService.deleteCarro(id).subscribe(data => {
-        if (JSON.stringify(data) === "{\"Message\":\"Carro eliminado\"}") {
+        if (JSON.stringify(data) === '{\"Message\":\"Carro eliminado\"}') {
           for (let i = 0; i < carros.length; i++) {
-            if (carros[i]._id == id) {
+            if (carros[i]._id === id) {
               carros.splice(i, 1);
             }
           }
@@ -62,6 +79,10 @@ export class CarroComponent implements OnInit {
     }
   }
 
+  /**
+  * función encargada de mostrar la interfaz para  actualizar un carro
+  * @param {Carro} carro - Objeto carro que se actualizará
+  */
   mostrarUpdate(carro: Carro) {
     this.id = carro._id;
     this.marca = carro.marca;
@@ -75,6 +96,9 @@ export class CarroComponent implements OnInit {
     this.Updateoculto = false;
   }
 
+  /**
+  * función encargada de actualizar un carro seleccionado en la interfaz
+  */
   updateCarro() {
     const updateCarro: Carro = {
       _id: this.id,
@@ -87,23 +111,28 @@ export class CarroComponent implements OnInit {
       ano: this.ano
     };
     this.carroService.updateCarro(updateCarro).subscribe(data => {
-      const carros = this.carros;      
-      if (JSON.stringify(data) === "{\"Message\":\"Carro modificado\"}") {
+      const carros = this.carros;
+      console.log(JSON.stringify(data));
+      if (JSON.stringify(data) === '{\"Message\":\"Carro modificado\"}') {
         for (let i = 0; i < carros.length; i++) {
-          if (carros[i]._id == updateCarro._id) {
+          if (carros[i]._id === updateCarro._id) {
             carros.splice(i, 1);
             this.carros.push(updateCarro);
+            alert('Carro actualizado correctamente.');
           }
         }
-      }else{
-        alert("Error, Carro no eliminado.");
-      }      
+      } else {
+        alert('Error, Carro no actualizado.');
+      }
       this.resetearValores();
     });
     this.Updateoculto = true;
     this.Addoculto = false;
   }
 
+  /**
+  * función encargada resetear los valores ingresados cuando se almacena o edita un carro
+  */
   resetearValores() {
     this.marca = '';
     this.modelo = '';
