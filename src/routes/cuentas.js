@@ -27,14 +27,14 @@ router.post('/' ,(req,res) => {
         if(err) {
             return res.json({ codigo: err});
         }
-        res.json({ codigo: 'Cuenta Agregada'});
+        res.json(nuevaCuenta);
     });
 });
 
 router.delete('/:id', (req, res) =>{
     Cuenta.remove({_id: req.params.id }, (err) => {
-        if(err) return res.json({message: err});
-        res.json({codigo: 'Cuenta Eliminada'});
+        if(err) return res.json({Message: err});
+        res.json({Message: 'Cuenta Eliminada'});
     });
 });
 

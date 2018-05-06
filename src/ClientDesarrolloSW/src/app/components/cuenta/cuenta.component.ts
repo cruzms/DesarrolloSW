@@ -45,7 +45,7 @@ export class CuentaComponent implements OnInit {
     if (response) {
       const cuentas = this.cuentas;
       this.cuentaService.deleteCuenta(id).subscribe(data => {
-        if (JSON.stringify(data) === "{\"Message\":\"Cuenta eliminado\"}") {
+        if (JSON.stringify(data) === "{\"Message\":\"Cuenta Eliminada\"}") {
           for (let i = 0; i < cuentas.length; i++) {
             if (cuentas[i]._id == id) {
               cuentas.splice(i, 1);
