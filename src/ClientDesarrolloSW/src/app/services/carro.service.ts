@@ -8,10 +8,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Carro } from '../models/Carro';
 import 'rxjs/Rx';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CarroService {
-  domain = 'http://localhost:3000';
+  domain = environment.api_url;
   constructor(private http: HttpClient) { }
 
   /**

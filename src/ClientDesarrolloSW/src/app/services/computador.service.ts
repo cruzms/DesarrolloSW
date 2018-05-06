@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Computador } from '../models/Computador';
 import { Observable } from 'rxjs/Rx';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ComputadorService {
-  domain = '/api/computadores';
+  domain = `${environment.api_url}/api/computadores`;
   constructor(private http: HttpClient) { }
 
   getComputadores() {
