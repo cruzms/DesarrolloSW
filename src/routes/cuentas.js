@@ -40,8 +40,8 @@ router.delete('/:id', (req, res) =>{
 
 router.put('/:id', (req, res) =>{
     Cuenta.update({_id: req.params.id} , req.body, (err,raw) => {
-        if(err) return res.json({message: err});
-        res.json({ codigo: 'Cuenta modificada'});
+        if(err) return res.json({Message: err});
+        res.json({ Message: 'Cuenta modificada'});
     });
 });
 

@@ -76,7 +76,7 @@ export class CuentaComponent implements OnInit {
     };
     this.cuentaService.updateCuenta(updateCuenta).subscribe(data => {
       const cuentas = this.cuentas;      
-      if (JSON.stringify(data) === "{\"Message\":\"Cuenta modificado\"}") {
+      if (JSON.stringify(data) === "{\"Message\":\"Cuenta modificada\"}") {
         for (let i = 0; i < cuentas.length; i++) {
           if (cuentas[i]._id == updateCuenta._id) {
             cuentas.splice(i, 1);
