@@ -10,15 +10,19 @@ import { AppComponent } from './app.component';
 import { CarroComponent } from './components/carro/carro.component';
 import { ComputadorComponent } from './components/computador/computador.component';
 import { HomeComponent } from './components/home/home.component';
+import { CuentaComponent } from './components/cuenta/cuenta.component';
 
 //Servicios
 import { CarroService } from './services/carro.service';
 import { ComputadorService } from "./services/computador.service";
+import { CuentaService } from "./services/cuenta.service";
+
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'carros', component: CarroComponent },
-  { path: 'computadores', component: ComputadorComponent }
+  { path: 'computadores', component: ComputadorComponent },
+  { path: 'cuentas', component: CuentaComponent }
 ];
 
 @NgModule({
@@ -26,7 +30,8 @@ const appRoutes: Routes = [
     AppComponent,
     CarroComponent,
     ComputadorComponent,
-    HomeComponent
+    HomeComponent,
+    CuentaComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     CarroService,
-    ComputadorService
+    ComputadorService,
+    CuentaService
   ],
   bootstrap: [AppComponent]
 })

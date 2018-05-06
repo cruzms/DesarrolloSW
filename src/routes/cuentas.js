@@ -18,10 +18,10 @@ router.get('/:id',(req, res) => {
 
 router.post('/' ,(req,res) => {
     let nuevaCuenta = new Cuenta({
-        Numero_cuenta: req.body.Numero_cuenta,
-        Id_cliente: req.body.Id_cliente,
-        Saldo: req.body.Saldo,
-        Tipo : req.body.Tipo
+        numero_cuenta: req.body.numero_cuenta,
+        id_cliente: req.body.id_cliente,
+        saldo: req.body.saldo,
+        tipo : req.body.tipo
     });
     nuevaCuenta.save((err,nuevaCuenta) => {
         if(err) {
