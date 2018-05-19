@@ -4,26 +4,9 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/carros']">Carros</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/computadores']">Computadores</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/cuentas']">Cuentas</a>
-      </li>
-    </ul>
   </div>
 </nav>
 
 <div class="container mt-3">
-  <!-- <div class="row">
-    <div class="col-md-14">
-      <app-carro></app-carro>
-    </div>
-  </div> -->
-  <flash-messages></flash-messages>
   <router-outlet></router-outlet>
 </div>

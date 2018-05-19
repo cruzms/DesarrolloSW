@@ -5,12 +5,4 @@
  */
 const router = require('express').Router();
 
-const computadoresRouter = require('./computadores');
-const carrosRouter = require('./carros');
-const cuentasRouter = require('./cuentas');
-
-router.use('/computadores', computadoresRouter);
-router.use('/carros', carrosRouter);
-router.use('/cuentas',cuentasRouter);
-
 module.exports = router;

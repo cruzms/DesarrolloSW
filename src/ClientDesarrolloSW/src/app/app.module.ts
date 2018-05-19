@@ -7,43 +7,26 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 
 //Componentes
 import { AppComponent } from './app.component';
-import { CarroComponent } from './components/carro/carro.component';
-import { ComputadorComponent } from './components/computador/computador.component';
 import { HomeComponent } from './components/home/home.component';
-import { CuentaComponent } from './components/cuenta/cuenta.component';
 
 //Servicios
-import { CarroService } from './services/carro.service';
-import { ComputadorService } from "./services/computador.service";
-import { CuentaService } from "./services/cuenta.service";
-
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'carros', component: CarroComponent },
-  { path: 'computadores', component: ComputadorComponent },
-  { path: 'cuentas', component: CuentaComponent }
+  { path: '', component: HomeComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarroComponent,
-    ComputadorComponent,
-    HomeComponent,
-    CuentaComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
-    FlashMessagesModule.forRoot()
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    CarroService,
-    ComputadorService,
-    CuentaService
   ],
   bootstrap: [AppComponent]
 })
