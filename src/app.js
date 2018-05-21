@@ -21,6 +21,7 @@ const app = express();
 const catalogoApiRouter = require('./routes/catalogoApi');
 
 app.set('port', process.env.PORT || 3000);
+app.set('json spaces', 2); //formato de respuesta json
 
 //Middlewares
 app.use(cors());
