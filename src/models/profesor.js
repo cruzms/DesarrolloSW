@@ -16,6 +16,10 @@ const profesorSchema = mongoose.Schema({
     materias: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Materia'
+    }],
+    grupos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Grupo'
     }]
 });
 

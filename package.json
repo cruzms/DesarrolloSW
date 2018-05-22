@@ -24,5 +24,16 @@
   },
   "devDependencies": {
     "@angular/cli": "^6.0.3"
+  },
+  "apidoc": {
+    "name": "Colegio la esperanza",
+    "version": "0.1.0",
+    "apidoc": {
+      "title": "API",
+      "url": "https://api.github.com/v1"
+    },
+    "template": {
+      "withCompare": false
+    }
   }
 }
