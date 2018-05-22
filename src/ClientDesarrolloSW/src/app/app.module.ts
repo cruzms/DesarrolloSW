@@ -1,24 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
-import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 
-//Componentes
+// Componentes
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 
-//Servicios
+// Servicios
+import { ProfesorService } from './services/profesor.service';
+import { ActividadService } from './services/actividad.service';
+import { MateriaService } from './services/materia.service';
+import { GrupoService } from './services/grupo.service';
+import { TemaService } from './services/tema.service';
+import { ActividadComponent } from './components/actividad/actividad.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent }
+  { path: '', component: HomeComponent },
+  { path: 'agregarActividad', component: ActividadComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ActividadComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +35,11 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
+    ProfesorService,
+    ActividadService,
+    MateriaService,
+    GrupoService,
+    TemaService
   ],
   bootstrap: [AppComponent]
 })
