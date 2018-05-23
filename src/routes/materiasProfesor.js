@@ -7,6 +7,7 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const Profesor = require('../models/profesor');
 const Materia = require('../models/materia');
+let materias = [];
 
 /**
  * Consultar las materias que da un profesor
@@ -17,24 +18,15 @@ const Materia = require('../models/materia');
  * o Código HTTP:400 y un mensaje indicando el error en la solicitud
  */
 router.get('/:id', (req, res) => {
-    materias: Materia[];
     Profesor.findOne({
-        _id: req.params.id
-    }, (err, profesor) => {
-        if (err) return res.status(400).json({
-            message: err
-        });
-        profesor.materias.forEach(idmateria => {
-            Materia.findOne({
-                _id: idmateria
-            }, (err, materia) => {
-                if (err) return res.status(400).json({
-                    message: err
-                });
-                materias.push(materia);
+            _id: req.params.id
+        })
+        .populate('materias')
+        .exec((err, profesor) => {
+            if (err) return res.status(400).json({
+                message: err
             });
+            res.status(200).json(profesor.materias);
         });
-        res.status(200).json(materias);
-    });
 });
 module.exports = router;

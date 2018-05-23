@@ -7,9 +7,11 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const Profesor = require('../models/profesor');
-const materiaProfesor = require('./materiasPorProfesor');
+const asignarMateria = require('./asignarMateria');
+const materiasProfesor = require('./materiasProfesor');
 
-router.use('/asignarMateria', materiaProfesor);
+router.use('/asignarMateria', asignarMateria);
+router.use('/consultarMaterias', materiasProfesor);
 
 /**
  * @api {GET} /api/profesores Obtener todas los profesores

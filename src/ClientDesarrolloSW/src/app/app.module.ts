@@ -15,18 +15,18 @@ import { ActividadService } from './services/actividad.service';
 import { MateriaService } from './services/materia.service';
 import { GrupoService } from './services/grupo.service';
 import { TemaService } from './services/tema.service';
-import { ActividadComponent } from './components/actividad/actividad.component';
+import { NuevaactividadComponent } from './components/nuevaactividad/nuevaactividad.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'agregarActividad', component: ActividadComponent },
+  { path: 'nuevaActividad', component: NuevaactividadComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ActividadComponent
+    NuevaactividadComponent
   ],
   imports: [
     BrowserModule,

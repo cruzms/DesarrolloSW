@@ -16,12 +16,12 @@ export class MateriaService {
   constructor(private http: HttpClient) { }
 
   /**
-  * Método encargado de consultar la materia dado un id
-  * @param {string} id - id de la materia a buscar
-  * @returns Materia con el id ingresado
+  * Método encargado de consultar las materias de un profesor
+  * @param {string} idProfesor - id del profesor
+  * @returns Materias del profesor ingresado
   */
-  getMateria(id) {
-    return this.http.get<Materia>(`${this.domain}/api/materias/${id}`)
+  getMateriasProfesor(idProfesor) {
+    return this.http.get<Materia[]>(`${this.domain}/api/profesores/consultarMaterias/${idProfesor}`)
       .map(res => res);
   }
 }
