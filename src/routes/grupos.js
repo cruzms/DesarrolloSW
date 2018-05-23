@@ -18,7 +18,7 @@ const Grupo = require('../models/grupo');
  * @apiSuccess (200) {Grupo} grupo Grupo buscado
  * 
  * @apiError (400) {StatusCode} statuscode Código HTTP
- * @apiError (400) {StatusCode} message Si no se encuentra el grupo con el id solicitado
+ * @apiError (400) {Json} message Si no se encuentra el grupo con el id solicitado
  */
 router.get('/:id', (req, res) => {
     Grupo.findOne({ _id: req.params.id }, (err, grupo) => {

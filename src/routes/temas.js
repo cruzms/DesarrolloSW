@@ -18,7 +18,7 @@ const Tema = require('../models/tema');
  * @apiSuccess (200) {Tema} tema Tema buscado
  * 
  * @apiError (400) {StatusCode} statuscode Código HTTP
- * @apiError (400) {StatusCode} message Si no se encuentra el tema con el id solicitado
+ * @apiError (400) {Json} message Si no se encuentra el tema con el id solicitado
  */
 router.get('/:id', (req, res) => {
     Tema.findOne({ _id: req.params.id }, (err, tema) => {

@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
  * @apiSuccess (200) {Actividad} actividad Actividad buscada
  * 
  * @apiError (400) {StatusCode} statuscode Código HTTP
- * @apiError (400) {StatusCode} message Si no se encuentra la actividad con el id solicitado
+ * @apiError (400) {Json} message Si no se encuentra la actividad con el id solicitado
  */
 router.get('/:id', (req, res) => {
     Actividad.findOne({ _id: req.params.id }, (err, actividad) => {
@@ -56,7 +56,15 @@ router.get('/:id', (req, res) => {
  * 
  * @apiParamExample  {Actividad} Request-Example:
  *      {
- *          "nombre":"Español"
+ *          "titulo":"Español",
+ *          "integrantes": 1,
+ *          "descripcion": "Texto",
+ *          "objetivos": "Texto",
+ *          "fechaLimite": "01/4/2016",
+ *          "grupo": "ID grupo",
+ *          "materia": "ID materia",
+ *          "tema": "ID tema",
+ *          "archivos": ["ID 1", "ID 1"]
  *      }
  * 
  * @apiSuccess (200) {StatusCode} statuscode Código HTTP

@@ -12,11 +12,15 @@ const materiaProfesor = require('./materiasPorProfesor');
 router.use('/asignarMateria', materiaProfesor);
 
 /**
- * Obtener todos los profesores
- * URL: /api/profesores
- * Método HTTP: GET
- * @returns {StatusCode profesores[]} - Código HTTP:200 y lista de profesores
- * o Código HTTP:400 si ocurre un error en la solicitud
+ * @api {GET} /api/profesores Obtener todas los profesores
+ * @apiName GetProfesor
+ * @apiGroup Profesor
+ * 
+ * @apiSuccess (200) {StatusCode} statuscode Código HTTP
+ * @apiSuccess (200) {profesores[]} profesores Lista de profesores
+ * 
+ * @apiError (400) {StatusCode} statuscode Código HTTP
+ * @apiError (400) {Json} message Si ocurre un error en la solicitud
  */
 router.get('/', (req, res) => {
     Profesor.find((err, profesores) => {
@@ -25,13 +29,18 @@ router.get('/', (req, res) => {
     });
 });
 
-/**
- * Obtener un profesor con un id proporcionado
- * URL: /api/profesores/:id
- * Método HTTP: GET
- * @param {String} id - Cédula del profesor buscado
- * @returns {StatusCode profesor} - Código HTTP:200 y objeto profesor
- * o Código HTTP:400 si no se encuentra el profesor con el id solicitado
+ /** 
+ * @api {GET} /api/profesores/:id Obtener un profesor con un id proporcionado
+ * @apiName GetProfesorID
+ * @apiGroup Profesor 
+ * 
+ * @apiParam  {String} id Id del profesor
+ * 
+ * @apiSuccess (200) {StatusCode} statuscode Código HTTP
+ * @apiSuccess (200) {Profesor} profesor Profesor buscado
+ * 
+ * @apiError (400) {StatusCode} statuscode Código HTTP
+ * @apiError (400) {Json} message Si no se encuentra el profesor con el id solicitado
  */
 router.get('/:id', (req, res) => {
     Profesor.findOne({ _id: req.params.id }, (err, profesor) => {
@@ -40,16 +49,30 @@ router.get('/:id', (req, res) => {
     });
 });
 
-/**
- * Agregar un profesor a la base de datos
- * URL: /api/profesores
- * Método HTTP: POST
- * @param {Object} Profesor - El profesor que se va a agregar al sistema
- * @param {Number} Profesor._id - La cédula del profesor 
- * @param {String} Profesor.nombre - El nombre del profesor 
- * @param {String} Profesor.apellido - El apellido del profesor
- * @returns {StatusCode} Código HTTP:200 un mensaje indicando que se agregó el profesor 
- * o Código HTTP:400 y un mensaje indicando el error en la solicitud
+ /** 
+ * @api {POST} /api/profesores Agregar un profesor a la base de datos
+ * @apiName PostProfesor
+ * @apiGroup Profesor 
+ * 
+ * @apiParam {Profesor} Profesor El profesor que se va a agregar al sistema
+ * @apiParam {Number} Profesor._id - La cédula del profesor 
+ * @apiParam {String} Profesor.nombre - El nombre del profesor 
+ * @apiParam {String} Profesor.apellido - El apellido del profesor
+ * 
+ * @apiParamExample  {Profesor} Request-Example:
+ *      {
+ *          "_id": 1111,
+ *          "nombre": "Nombre",
+ *          "apellido": "Apellido"
+ *          "materias": ["ID materia 1", "ID materia 2"]
+ *      }
+ * 
+ * @apiSuccess (200) {StatusCode} statuscode Código HTTP
+ * @apiSuccess (200) {Json} message Mensaje indicando que se agregó la profesor
+ * @apiSuccess (200) {Json} object Profesor agregado
+ * 
+ * @apiError (400) {StatusCode} statuscode Código HTTP
+ * @apiError (400) {Json} message Mensaje indicando el error en la solicitud
  */
 router.post('/', (req, res) => {
     let nuevoProfesor = new Profesor({
