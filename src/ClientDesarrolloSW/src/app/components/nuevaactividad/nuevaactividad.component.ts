@@ -27,14 +27,21 @@ import { Tema } from '../../models/Tema';
 export class NuevaactividadComponent implements OnInit {
   idProfesor = 1053854;
   materias: Materia[];
+  selectedMateriaNombre: string;
+  selectedMateria: Materia;
   constructor(private profesorService: ProfesorService, private actividadService: ActividadService,
     private grupoService: GrupoService, private materiaService: MateriaService, temaService: TemaService) {
-      materiaService.getMateriasProfesor(this.idProfesor).subscribe(materias =>{
-        console.log(materias);
-      });
+    materiaService.getMateriasProfesor(this.idProfesor).subscribe(materias => {
+      this.materias = materias;
+    });
   }
 
   ngOnInit() {
   }
 
+  private getTemas() {
+    this.selectedMateria = this.materias.find(materia => materia.nombre === this.selectedMateriaNombre);
+    // con el id de la materia buscar los temas
+    console.log(this.selectedMateria._id);
+  }
 }

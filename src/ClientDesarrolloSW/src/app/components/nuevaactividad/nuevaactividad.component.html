@@ -1,3 +1,3 @@
-<p>
-  nuevaactividad works!
-</p>
+<select [(ngModel)]="selectedMateriaNombre" (ngModelChange)="onMateriaSelected()">
+  <option *ngFor="let materia of materias" [value]="materia.nombre">{{materia.nombre}}</option>
+</select>
