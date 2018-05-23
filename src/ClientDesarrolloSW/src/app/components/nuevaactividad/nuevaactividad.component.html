@@ -1,7 +1,19 @@
 <h3>Nueva actividad</h3>
-Grupo: <select [(ngModel)]="selectedGrupoNombre" (ngModelChange)="onGrupoSelected()">
-  <option *ngFor="let grupo of grupos" [value]="grupo.nombre">{{grupo.nombre}}</option>
-</select>
-Materia: <select [(ngModel)]="selectedMateriaNombre" (ngModelChange)="onMateriaSelected()">
-  <option *ngFor="let materia of materias" [value]="materia.nombre">{{materia.nombre}}</option>
-</select>
+<div class="col-6">
+  <br> Grupo:
+  <select [(ngModel)]="selectedGrupoNombre" (ngModelChange)="onGrupoSelected()">
+    <option *ngFor="let grupo of grupos" [value]="grupo.nombre">{{grupo.nombre}}</option>
+  </select>
+  Materia:
+  <select [(ngModel)]="selectedMateriaNombre" (ngModelChange)="onMateriaSelected()">
+    <option *ngFor="let materia of materias" [value]="materia.nombre">{{materia.nombre}}</option>
+  </select>
+  <div class="input-group col-xs-3 mt-3 mb-3">
+    <input type="text" name="titulo" [(ngModel)]="titulo" placeholder="Tíulo" class="form-control">
+    <input type="text" name="nintegrantes" [(ngModel)]="nintegrantes" placeholder="Núm. integrantes" class="form-control">
+  </div>
+  Tema:
+  <select [(ngModel)]="selectedTemaNombre" (ngModelChange)="onTemaSelected()">
+    <option *ngFor="let tema of temas" [value]="tema.nombre">{{tema.nombre}}</option>
+  </select>
+</div>

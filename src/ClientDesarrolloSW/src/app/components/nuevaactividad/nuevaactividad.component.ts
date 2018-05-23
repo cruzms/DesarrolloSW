@@ -26,12 +26,20 @@ import { Tema } from '../../models/Tema';
 })
 export class NuevaactividadComponent implements OnInit {
   idProfesor = 123456789; // Debe existir este id
-  materias: Materia[];
   grupos: Grupo[];
-  selectedMateriaNombre: string;
-  selectedMateria: Materia;
+  materias: Materia[];
+  temas: Tema[];
   selectedGrupoNombre: string;
   selectedGrupo: Grupo;
+  selectedMateriaNombre: string;
+  selectedMateria: Materia;
+  selectedTemaNombre: string;
+  selectedTema: Tema;
+  titulo: string;
+  descripcion: string;
+  fechalimite: Date;
+  nintegrantes: number;
+  objetivos: string;
   constructor(private profesorService: ProfesorService, private actividadService: ActividadService,
     private grupoService: GrupoService, private materiaService: MateriaService, temaService: TemaService) {
     profesorService.getMateriasProfesor(this.idProfesor).subscribe(materias => {
@@ -45,13 +53,25 @@ export class NuevaactividadComponent implements OnInit {
   ngOnInit() {
   }
 
-  private onMateriaSelected() {
+  onMateriaSelected() {
     this.selectedMateria = this.materias.find(materia => materia.nombre === this.selectedMateriaNombre);
     console.log(this.selectedMateria._id);
+    this.getTemas(this.selectedMateria._id);
   }
 
-  private onGrupoSelected() {
+  onGrupoSelected() {
     this.selectedGrupo = this.grupos.find(grupo => grupo.nombre === this.selectedGrupoNombre);
     console.log(this.selectedGrupo._id);
+  }
+
+  onTemaSelected() {
+    this.selectedTema = this.temas.find(tema => tema.nombre === this.selectedTemaNombre);
+    console.log(this.selectedTema._id);
+  }
+
+  getTemas(idMateria) {
+    this.materiaService.getTemasMateria(idMateria).subscribe(temas => {
+      this.temas = temas;
+    });
   }
 }

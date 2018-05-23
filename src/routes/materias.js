@@ -6,6 +6,11 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const Materia = require('../models/materia');
+const asignarTema = require('./asignarTema');
+const temasMateria = require('./temasMateria');
+
+router.use('/asignarTema', asignarTema);
+router.use('/consultarTemas', temasMateria);
 
 /**
  * @api {GET} /api/materias Obtener todas las materias
