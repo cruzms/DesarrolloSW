@@ -25,23 +25,33 @@ import { Tema } from '../../models/Tema';
   styleUrls: ['./nuevaactividad.component.css']
 })
 export class NuevaactividadComponent implements OnInit {
-  idProfesor = 1053854;
+  idProfesor = 123456789; // Debe existir este id
   materias: Materia[];
+  grupos: Grupo[];
   selectedMateriaNombre: string;
   selectedMateria: Materia;
+  selectedGrupoNombre: string;
+  selectedGrupo: Grupo;
   constructor(private profesorService: ProfesorService, private actividadService: ActividadService,
     private grupoService: GrupoService, private materiaService: MateriaService, temaService: TemaService) {
-    materiaService.getMateriasProfesor(this.idProfesor).subscribe(materias => {
+    profesorService.getMateriasProfesor(this.idProfesor).subscribe(materias => {
       this.materias = materias;
+    });
+    profesorService.getGruposProfesor(this.idProfesor).subscribe(grupos => {
+      this.grupos = grupos;
     });
   }
 
   ngOnInit() {
   }
 
-  private getTemas() {
+  private onMateriaSelected() {
     this.selectedMateria = this.materias.find(materia => materia.nombre === this.selectedMateriaNombre);
-    // con el id de la materia buscar los temas
     console.log(this.selectedMateria._id);
+  }
+
+  private onGrupoSelected() {
+    this.selectedGrupo = this.grupos.find(grupo => grupo.nombre === this.selectedGrupoNombre);
+    console.log(this.selectedGrupo._id);
   }
 }

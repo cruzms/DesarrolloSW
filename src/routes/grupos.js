@@ -7,6 +7,40 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const Grupo = require('../models/grupo');
 
+/**
+ * 
+ * @api {POST} /api/grupos Agregar un grupo a la base de datos
+ * @apiName PostGrupo
+ * @apiGroup Grupo 
+ * 
+ * @apiParam {Grupo} Grupo El grupo que se va a agregar al sistema
+ * @apiParam {String} Grupo.nombre El nombre del grupo
+ * 
+ * @apiParamExample  {Grupo} Request-Example:
+ *      {
+ *          "nombre": "Octavo A"
+ *      }
+ * 
+ * @apiSuccess (200) {StatusCode} statuscode Código HTTP
+ * @apiSuccess (200) {Json} message Mensaje indicando que se agregó el grupo
+ * @apiSuccess (200) {Json} object Grupo agregado
+ * 
+ * @apiError (400) {StatusCode} statuscode Código HTTP
+ * @apiError (400) {Json} message Mensaje indicando el error en la solicitud
+ */
+router.post('/', (req, res) => {
+    let nuevoGrupo = new Grupo({
+        nombre: req.body.nombre
+    });
+
+    nuevoGrupo.save((err, nuevoGrupo) => {
+        if (err) {
+            return res.status(400).json({ message: err });
+        }
+        res.status(200).json({ message: 'Grupo agregado', object: nuevoGrupo });
+    });
+});
+
 /** 
  * @api {GET} /api/grupos/:id Obtener un grupo con un id proporcionado
  * @apiName GetGrupoID

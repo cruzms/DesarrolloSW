@@ -14,14 +14,4 @@ import 'rxjs/Rx';
 export class MateriaService {
   domain = environment.api_url;
   constructor(private http: HttpClient) { }
-
-  /**
-  * Método encargado de consultar las materias de un profesor
-  * @param {string} idProfesor - id del profesor
-  * @returns Materias del profesor ingresado
-  */
-  getMateriasProfesor(idProfesor) {
-    return this.http.get<Materia[]>(`${this.domain}/api/profesores/consultarMaterias/${idProfesor}`)
-      .map(res => res);
-  }
 }

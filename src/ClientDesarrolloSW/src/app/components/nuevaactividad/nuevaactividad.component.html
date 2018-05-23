@@ -1,3 +1,7 @@
-<select [(ngModel)]="selectedMateriaNombre" (ngModelChange)="onMateriaSelected()">
+<h3>Nueva actividad</h3>
+Grupo: <select [(ngModel)]="selectedGrupoNombre" (ngModelChange)="onGrupoSelected()">
+  <option *ngFor="let grupo of grupos" [value]="grupo.nombre">{{grupo.nombre}}</option>
+</select>
+Materia: <select [(ngModel)]="selectedMateriaNombre" (ngModelChange)="onMateriaSelected()">
   <option *ngFor="let materia of materias" [value]="materia.nombre">{{materia.nombre}}</option>
 </select>

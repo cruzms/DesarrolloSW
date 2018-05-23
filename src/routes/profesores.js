@@ -8,10 +8,14 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const Profesor = require('../models/profesor');
 const asignarMateria = require('./asignarMateria');
+const asignarGrupo = require('./asignarGrupo');
 const materiasProfesor = require('./materiasProfesor');
+const gruposProfesor = require('./gruposProfesor');
 
 router.use('/asignarMateria', asignarMateria);
+router.use('/asignarGrupo', asignarGrupo);
 router.use('/consultarMaterias', materiasProfesor);
+router.use('/consultarGrupos', gruposProfesor);
 
 /**
  * @api {GET} /api/profesores Obtener todas los profesores
@@ -66,7 +70,6 @@ router.get('/:id', (req, res) => {
  *          "_id": 1111,
  *          "nombre": "Nombre",
  *          "apellido": "Apellido"
- *          "materias": ["ID materia 1", "ID materia 2"]
  *      }
  * 
  * @apiSuccess (200) {StatusCode} statuscode Código HTTP

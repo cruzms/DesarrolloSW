@@ -7,6 +7,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Profesor } from '../models/Profesor';
+import { Materia } from '../models/Materia';
+import { Grupo } from '../models/Grupo';
 import { environment } from '../../environments/environment';
 import 'rxjs/Rx';
 
@@ -22,6 +24,26 @@ export class ProfesorService {
   */
   getProfesor(id) {
     return this.http.get<Profesor>(`${this.domain}/api/profesores/${id}`)
+      .map(res => res);
+  }
+
+  /**
+    * Método encargado de consultar las materias de un profesor
+    * @param {string} idProfesor - id del profesor
+    * @returns Materias del profesor ingresado
+    */
+  getMateriasProfesor(idProfesor) {
+    return this.http.get<Materia[]>(`${this.domain}/api/profesores/consultarMaterias/${idProfesor}`)
+      .map(res => res);
+  }
+
+  /**
+    * Método encargado de consultar los grupos de un profesor
+    * @param {string} idProfesor - id del profesor
+    * @returns Grupos del profesor ingresado
+    */
+   getGruposProfesor(idProfesor) {
+    return this.http.get<Grupo[]>(`${this.domain}/api/profesores/consultarGrupos/${idProfesor}`)
       .map(res => res);
   }
 }

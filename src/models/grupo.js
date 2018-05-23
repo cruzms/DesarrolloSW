@@ -5,8 +5,8 @@
  */
 
 const mongoose = require('mongoose');
-const materiaSchema = mongoose.Schema({
+const grupoSchema = mongoose.Schema({
   nombre: String
 });
 
-module.exports = mongoose.model('Grupo', materiaSchema, 'Grupos');
+module.exports = mongoose.model('Grupo', grupoSchema, 'Grupos');

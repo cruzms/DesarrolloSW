@@ -3,8 +3,8 @@ const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://sqladmin:cisco123@ds257589.mlab.com:57589/testswdb');
-// mongoose.connect('mongodb://localhost:27017/testDB');
+//mongoose.connect('mongodb://sqladmin:cisco123@ds257589.mlab.com:57589/testswdb');
+mongoose.connect('mongodb://localhost:27017/testDB');
 const db = mongoose.connection;
 // si se conecto
 db.once('open', () => {
