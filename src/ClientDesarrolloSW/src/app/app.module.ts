@@ -15,7 +15,10 @@ import { ActividadService } from './services/actividad.service';
 import { MateriaService } from './services/materia.service';
 import { GrupoService } from './services/grupo.service';
 import { TemaService } from './services/tema.service';
+import { ArchivoService } from './services/archivo.service';
+import { ValidardatosService } from './services/validardatos.service';
 import { NuevaactividadComponent } from './components/nuevaactividad/nuevaactividad.component';
+import { validateConfig } from '@angular/router/src/config';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -39,7 +42,9 @@ const appRoutes: Routes = [
     ActividadService,
     MateriaService,
     GrupoService,
-    TemaService
+    TemaService,
+    ArchivoService,
+    ValidardatosService
   ],
   bootstrap: [AppComponent]
 })

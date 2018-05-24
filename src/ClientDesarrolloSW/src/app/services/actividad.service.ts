@@ -16,11 +16,11 @@ export class ActividadService {
   constructor(private http: HttpClient) { }
 
   /**
-  * Método encargado de adicionar un nuevo carro en el servidor
-  * @param {Carro} nuevoCarro - carro que se agregará al servidor
-  * @returns Carro adicionado
+  * Método encargado de adicionar una nueva actividad en el servidor
+  * @param {Carro} nuevaActividad - actividad que se agregará al servidor
+  * @returns Actividad adicionada
   */
-  addCarro(nuevaActividad: Actividad) {
+  addActividad(nuevaActividad: Actividad) {
     return this.http.post<Actividad>(`${this.domain}/api/actividades`, nuevaActividad)
       .map(res => res);
   }

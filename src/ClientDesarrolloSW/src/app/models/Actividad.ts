@@ -7,11 +7,11 @@ export class Actividad {
     _id?: string;
     titulo: string;
     descripcion: string;
-    fechalimite: Date;
-    nintegrantes: number;
+    fechaLimite: Date;
+    integrantes: number;
     objetivos: string;
-    // archivos: string[];
-    idgrupo: string;
-    idmateria: string;
-    idtema: string;
+    archivos: string[];
+    grupo: string;
+    materia: string;
+    tema: string;
 }

@@ -14,7 +14,7 @@
     </div>
     <div class="input-group col-xs-3 mt-3 mb-3">
       <input type="text" name="titulo" [(ngModel)]="titulo" placeholder="Tíulo" class="form-control">
-      <input type="text" name="nintegrantes" [(ngModel)]="nintegrantes" placeholder="Núm. integrantes" class="form-control">
+      <input type="number" name="nintegrantes" [(ngModel)]="nintegrantes" placeholder="Núm. integrantes" class="form-control">
     </div>
     <div class="form-group">
       <label for="tema">Tema:</label>
@@ -26,6 +26,10 @@
       <label for="descripcion">Descripción:</label>
       <textarea class="form-control" rows="5" [(ngModel)]="descripcion"></textarea>
     </div>
+    <input id="photo" type="file" multiple/>
+    <button type="button" class="btn btn-success btn-s" (click)="upload()">
+      Cargar archivo
+    </button>
   </div>
   <div class="col-md-5 col">
     <div class="form-group">

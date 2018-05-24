@@ -4,14 +4,15 @@
  * @version 1.0
  */
 
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ElementRef, Input } from '@angular/core';
 // Services
 import { ProfesorService } from '../../services/profesor.service';
 import { ActividadService } from '../../services/actividad.service';
 import { GrupoService } from '../../services/grupo.service';
 import { MateriaService } from '../../services/materia.service';
 import { TemaService } from '../../services/tema.service';
+import { ArchivoService } from '../../services/archivo.service';
+import { ValidardatosService } from '../../services/validardatos.service';
 // Models
 import { Profesor } from '../../models/Profesor';
 import { Actividad } from '../../models/Actividad';
@@ -29,7 +30,7 @@ export class NuevaactividadComponent implements OnInit {
   grupos: Grupo[];
   materias: Materia[];
   temas: Tema[];
-  selectedGrupoNombre: string;
+  selectedGrupoNombre = '';
   selectedGrupo: Grupo;
   selectedMateriaNombre: string;
   selectedMateria: Materia;
@@ -41,7 +42,8 @@ export class NuevaactividadComponent implements OnInit {
   nintegrantes: number;
   objetivos: string;
   constructor(private profesorService: ProfesorService, private actividadService: ActividadService,
-    private grupoService: GrupoService, private materiaService: MateriaService, temaService: TemaService) {
+    private grupoService: GrupoService, private materiaService: MateriaService, temaService: TemaService,
+    private archivoService: ArchivoService, private validardatosService: ValidardatosService, private el: ElementRef) {
     profesorService.getMateriasProfesor(this.idProfesor).subscribe(materias => {
       this.materias = materias;
     });
@@ -69,7 +71,28 @@ export class NuevaactividadComponent implements OnInit {
   getTemas(idMateria) {
     this.materiaService.getTemasMateria(idMateria).subscribe(temas => {
       this.temas = temas;
-      console.log(this.objetivos);
     });
+  }
+
+  publicarActividad() {
+    const validation = this.validardatosService.ValidarActividad(this.titulo, this.descripcion, this.fechalimite,
+      this.nintegrantes, this.objetivos, this.selectedGrupo, this.selectedMateria, this.selectedTema, []);
+    if (validation.ok) {
+      this.actividadService.addActividad(validation.actividad).subscribe(actividad => {
+        alert(actividad);
+      });
+    } else {
+      alert(validation.message);
+    }
+  }
+
+  upload() {
+    const inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
+    const fileCount: number = inputEl.files.length;
+    const formData = new FormData();
+    if (fileCount > 0) {
+      formData.append('photo', inputEl.files.item(0));
+      console.log(formData);
+    }
   }
 }
