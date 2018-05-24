@@ -36,9 +36,9 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
-router.post('/upload', upload.single('file'), (req, res) => {
-    // res.json({ file: req.file });
-    res.redirect('/');
+router.post('/upload', upload.array('file'), (req, res) => {
+    res.json({ file: req.files });
+    // res.redirect('/');
 });
 
 /**
@@ -83,7 +83,7 @@ router.get('/:filename', (req, res) => {
                 message: 'No existe el archivo'
             });
         }
-        
+
         return res.json(file);
     });
 });
@@ -105,7 +105,7 @@ router.get('/:filename', (req, res) => {
  * @apiError (404) {Json} message Si no se encuentra el archivo con el nombre enviado
  */
 router.get('/descarga/:filename', (req, res) => {
-    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {        
+    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
         if (err) { return res.status(400).json({ message: err }); }
 
         if (!file || file.length === 0) {
