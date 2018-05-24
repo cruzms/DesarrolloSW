@@ -17,45 +17,31 @@ export class ValidardatosService {
   * @param {Actividad} actividad - actividad que se agregará al servidor
   * @returns Mensaje validación
   */
-  ValidarActividad(titulo, descripcion, fechaLimite, integrantes, objetivos, grupo, materia, tema, archivos) {
+  ValidarActividad(titulo, descripcion, fechaLimite, integrantes, objetivos, grupo, materia, tema) {
     if (titulo == null || descripcion === '') {
-      return { ok: false, message: 'Título incorrecto', actividad: null };
+      return { ok: false, message: 'Título incorrecto'};
     }
     if (descripcion == null || descripcion === '') {
-      return { ok: false, message: 'Descripción incorrecta', actividad: null };
+      return { ok: false, message: 'Descripción incorrecta'};
     }
-    if (fechaLimite == null) {
-      return { ok: false, message: 'Fecha incorrecta', actividad: null };
+    if (fechaLimite == null || new Date() > new Date(fechaLimite)) {
+      return { ok: false, message: 'Fecha incorrecta'};
     }
     if (integrantes == null) {
-      return { ok: false, message: 'Número de integrantes incorrecto', actividad: null };
+      return { ok: false, message: 'Número de integrantes incorrecto'};
     }
     if (objetivos == null || objetivos === '') {
-      return { ok: false, message: 'Ingrese objetivos', actividad: null };
+      return { ok: false, message: 'Ingrese objetivos'};
     }
     if (grupo == null) {
-      return { ok: false, message: 'Seleccione un grupo', actividad: null };
+      return { ok: false, message: 'Seleccione un grupo'};
     }
     if (materia == null) {
-      return { ok: false, message: 'Seleccione una materia', actividad: null };
+      return { ok: false, message: 'Seleccione una materia'};
     }
     if (tema == null) {
-      return { ok: false, message: 'Seleccione un tema', actividad: null };
+      return { ok: false, message: 'Seleccione un tema'};
     }
-    return {
-      ok: true,
-      message: 'Seleccione un tema',
-      actividad: {
-        titulo: titulo,
-        descripcion: descripcion,
-        fechaLimite: fechaLimite,
-        integrantes: integrantes,
-        objetivos: objetivos,
-        grupo: grupo._id,
-        materia: materia._id,
-        tema: tema._id,
-        archivos: archivos
-      }
-    };
+    return { ok: true, message: 'ok'};
   }
 }

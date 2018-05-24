@@ -58,6 +58,7 @@ export class NuevaactividadComponent implements OnInit {
   onMateriaSelected() {
     this.selectedMateria = this.materias.find(materia => materia.nombre === this.selectedMateriaNombre);
     this.getTemas(this.selectedMateria._id);
+    console.log(new Date().getUTCDate + '>' + new Date(this.fechalimite).getUTCDate);
   }
 
   onGrupoSelected() {
@@ -76,25 +77,55 @@ export class NuevaactividadComponent implements OnInit {
 
   publicarActividad() {
     const validation = this.validardatosService.ValidarActividad(this.titulo, this.descripcion, this.fechalimite,
-      this.nintegrantes, this.objetivos, this.selectedGrupo, this.selectedMateria, this.selectedTema, []);
+      this.nintegrantes, this.objetivos, this.selectedGrupo, this.selectedMateria, this.selectedTema);
     if (validation.ok) {
-      this.actividadService.addActividad(validation.actividad).subscribe(actividad => {
-        alert(actividad);
-      });
+      const inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#archivos');
+      const fileCount: number = inputEl.files.length;
+      const formData = new FormData();
+      console.log(fileCount + 'num archivos');
+      if (fileCount > 0) {
+        for (let index = 0; index < fileCount; index++) {
+          formData.append('archivos', inputEl.files.item(index));
+        }
+        this.archivoService.SubirArchivo(formData).subscribe(files => {
+          const file = [];
+          files.forEach(element => {
+            console.log(element);
+            file.push({ file: element.filename, nombreOriginal: element.originalname });
+          });
+          const newActividad = {
+            titulo: this.titulo,
+            descripcion: this.descripcion,
+            fechaLimite: this.fechalimite,
+            integrantes: this.nintegrantes,
+            objetivos: this.objetivos,
+            grupo: this.selectedGrupo._id,
+            materia: this.selectedMateria._id,
+            tema: this.selectedTema._id,
+            archivos: file
+          };
+          this.actividadService.addActividad(newActividad).subscribe(actividad => {
+            alert('Actividad agregada');
+          });
+        });
+      } else {
+        const newActividad = {
+          titulo: this.titulo,
+          descripcion: this.descripcion,
+          fechaLimite: this.fechalimite,
+          integrantes: this.nintegrantes,
+          objetivos: this.objetivos,
+          grupo: this.selectedGrupo._id,
+          materia: this.selectedMateria._id,
+          tema: this.selectedTema._id,
+          archivos: []
+        };
+        this.actividadService.addActividad(newActividad).subscribe(actividad => {
+          alert('Actividad agregada');
+        });
+      }
     } else {
       alert(validation.message);
-    }
-  }
-
-  upload() {
-    const inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#archivos');
-    const fileCount: number = inputEl.files.length;
-    const formData = new FormData();
-    if (fileCount > 0) {
-      formData.append('archivos', inputEl.files.item(0));
-      this.archivoService.SubirArchivo(formData).subscribe(datos => {
-        console.log(datos);
-      });
     }
   }
 }

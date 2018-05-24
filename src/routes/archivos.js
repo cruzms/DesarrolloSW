@@ -34,7 +34,9 @@ const storage = new GridFsStorage({
         });
     }
 });
-const upload = multer({ storage });
+const upload = multer({
+    storage
+});
 
 router.post('/upload', upload.array('archivos'), (req, res) => {
     let files = [];
@@ -45,7 +47,7 @@ router.post('/upload', upload.array('archivos'), (req, res) => {
         };
         files.push(response);
     }
-    res.json({ files: files });
+    res.status(200).json(files);
     // res.redirect('/');
 });
 
@@ -83,8 +85,14 @@ router.get('/', (req, res) => {
  * @apiError (404) {Json} message Si no se encuentra el archivo con el nombre enviado
  */
 router.get('/:filename', (req, res) => {
-    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-        if (err) { return res.status(400).json({ message: err }); }
+    gfs.files.findOne({
+        filename: req.params.filename
+    }, (err, file) => {
+        if (err) {
+            return res.status(400).json({
+                message: err
+            });
+        }
 
         if (!file || file.length === 0) {
             return res.status(404).json({
@@ -113,8 +121,14 @@ router.get('/:filename', (req, res) => {
  * @apiError (404) {Json} message Si no se encuentra el archivo con el nombre enviado
  */
 router.get('/descarga/:filename', (req, res) => {
-    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-        if (err) { return res.status(400).json({ message: err }); }
+    gfs.files.findOne({
+        filename: req.params.filename
+    }, (err, file) => {
+        if (err) {
+            return res.status(400).json({
+                message: err
+            });
+        }
 
         if (!file || file.length === 0) {
             return res.status(404).json({
