@@ -1,19 +1,45 @@
-<h3>Nueva actividad</h3>
-<div class="col-6">
-  <br> Grupo:
-  <select [(ngModel)]="selectedGrupoNombre" (ngModelChange)="onGrupoSelected()">
-    <option *ngFor="let grupo of grupos" [value]="grupo.nombre">{{grupo.nombre}}</option>
-  </select>
-  Materia:
-  <select [(ngModel)]="selectedMateriaNombre" (ngModelChange)="onMateriaSelected()">
-    <option *ngFor="let materia of materias" [value]="materia.nombre">{{materia.nombre}}</option>
-  </select>
-  <div class="input-group col-xs-3 mt-3 mb-3">
-    <input type="text" name="titulo" [(ngModel)]="titulo" placeholder="Tíulo" class="form-control">
-    <input type="text" name="nintegrantes" [(ngModel)]="nintegrantes" placeholder="Núm. integrantes" class="form-control">
+<h3 class="text-center">Nueva actividad</h3>
+<br>
+<div class="row">
+  <div class="col-md-7 col">
+    <div class="form-group">
+      <label for="grupo">Grupo:</label>
+      <select [(ngModel)]="selectedGrupoNombre" (ngModelChange)="onGrupoSelected()">
+        <option *ngFor="let grupo of grupos" [value]="grupo.nombre">{{grupo.nombre}}</option>
+      </select>
+      <label for="materia">Materia:</label>
+      <select [(ngModel)]="selectedMateriaNombre" (ngModelChange)="onMateriaSelected()">
+        <option *ngFor="let materia of materias" [value]="materia.nombre">{{materia.nombre}}</option>
+      </select>
+    </div>
+    <div class="input-group col-xs-3 mt-3 mb-3">
+      <input type="text" name="titulo" [(ngModel)]="titulo" placeholder="Tíulo" class="form-control">
+      <input type="text" name="nintegrantes" [(ngModel)]="nintegrantes" placeholder="Núm. integrantes" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="tema">Tema:</label>
+      <select [(ngModel)]="selectedTemaNombre" (ngModelChange)="onTemaSelected()">
+        <option *ngFor="let tema of temas" [value]="tema.nombre">{{tema.nombre}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción:</label>
+      <textarea class="form-control" rows="5" [(ngModel)]="descripcion"></textarea>
+    </div>
   </div>
-  Tema:
-  <select [(ngModel)]="selectedTemaNombre" (ngModelChange)="onTemaSelected()">
-    <option *ngFor="let tema of temas" [value]="tema.nombre">{{tema.nombre}}</option>
-  </select>
+  <div class="col-md-5 col">
+    <div class="form-group">
+      <label for="fechalimite">Fecha límite:</label>
+      <input type="date" [(ngModel)]="fechalimite" placeholder="yyyy-MM-dd" />
+    </div>
+    <div class="form-group">
+      <label for="objetivos">Objetivos:</label>
+      <textarea class="form-control" rows="5" [(ngModel)]="objetivos"></textarea>
+    </div>
+  </div>
+  <div class="col-md-12 text-center">
+    <button type="button" class="btn btn-success" (click)="publicarActividad()">
+      Publicar Actividad
+    </button>
+  </div>
 </div>

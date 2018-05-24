@@ -55,23 +55,21 @@ export class NuevaactividadComponent implements OnInit {
 
   onMateriaSelected() {
     this.selectedMateria = this.materias.find(materia => materia.nombre === this.selectedMateriaNombre);
-    console.log(this.selectedMateria._id);
     this.getTemas(this.selectedMateria._id);
   }
 
   onGrupoSelected() {
     this.selectedGrupo = this.grupos.find(grupo => grupo.nombre === this.selectedGrupoNombre);
-    console.log(this.selectedGrupo._id);
   }
 
   onTemaSelected() {
     this.selectedTema = this.temas.find(tema => tema.nombre === this.selectedTemaNombre);
-    console.log(this.selectedTema._id);
   }
 
   getTemas(idMateria) {
     this.materiaService.getTemasMateria(idMateria).subscribe(temas => {
       this.temas = temas;
+      console.log(this.objetivos);
     });
   }
 }
