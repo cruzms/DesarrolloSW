@@ -9,11 +9,13 @@ const materiasRouter = require('./materias');
 const actividadesRouter = require('./actividades');
 const gruposRouter = require('./grupos');
 const temasRouter = require('./temas');
+const archivosRouter = require('./archivos');
 
 router.use('/profesores', profesoresRouter);
 router.use('/materias', materiasRouter);
 router.use('/actividades', actividadesRouter);
 router.use('/grupos', gruposRouter);
 router.use('/temas', temasRouter);
+router.use('/archivos', archivosRouter);
 
 module.exports = router;

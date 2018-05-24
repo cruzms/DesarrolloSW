@@ -20,7 +20,10 @@
   "dependencies": {
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "mongoose": "^5.0.16"
+    "gridfs-stream": "^1.1.1",
+    "mongoose": "^5.0.16",
+    "multer": "^1.3.0",
+    "multer-gridfs-storage": "^3.0.1"
   },
   "devDependencies": {
     "@angular/cli": "^6.0.3"
