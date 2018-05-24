@@ -11,5 +11,4 @@ export class ArchivoService {
   SubirArchivo(archivo) {
     return this.http.post(`${this.domain}/api/archivos/upload`, archivo).map(res => res);
   }
-
 }

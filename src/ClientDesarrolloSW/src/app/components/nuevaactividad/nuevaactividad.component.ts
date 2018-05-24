@@ -26,7 +26,7 @@ import { Tema } from '../../models/Tema';
   styleUrls: ['./nuevaactividad.component.css']
 })
 export class NuevaactividadComponent implements OnInit {
-  idProfesor = 123456789; // Debe existir este id
+  idProfesor = 1053854; // Debe existir este id
   grupos: Grupo[];
   materias: Materia[];
   temas: Tema[];
@@ -87,12 +87,14 @@ export class NuevaactividadComponent implements OnInit {
   }
 
   upload() {
-    const inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
+    const inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#archivos');
     const fileCount: number = inputEl.files.length;
     const formData = new FormData();
     if (fileCount > 0) {
-      formData.append('photo', inputEl.files.item(0));
-      console.log(formData);
+      formData.append('archivos', inputEl.files.item(0));
+      this.archivoService.SubirArchivo(formData).subscribe(datos => {
+        console.log(datos);
+      });
     }
   }
 }

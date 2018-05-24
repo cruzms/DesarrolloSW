@@ -42,8 +42,13 @@ const materiaSchema = mongoose.Schema({
         required: [true, 'Tema es obligatorio']
     },
     archivos: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Archivo'
+        file: {
+            type: mongoose.Schema.Types.String,
+            ref: 'Archivo'
+        },
+        nombreOriginal: {
+            type: String
+        }
     }]
 });
 

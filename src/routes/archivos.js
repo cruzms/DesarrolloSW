@@ -36,7 +36,7 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
-router.post('/upload', upload.array('file'), (req, res) => {
+router.post('/upload', upload.array('archivos'), (req, res) => {
     res.json({ file: req.files });
     // res.redirect('/');
 });

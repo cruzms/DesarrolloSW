@@ -77,7 +77,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     let nuevaActividad = new Actividad({
         titulo: req.body.titulo,
-        integrantes: req.body.titulo,
+        integrantes: req.body.integrantes,
         descripcion: req.body.descripcion,
         objetivos: req.body.objetivos,
         fechaLimite: req.body.fechaLimite,
