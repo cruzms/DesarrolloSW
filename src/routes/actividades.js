@@ -20,7 +20,9 @@ const Actividad = require('../models/actividad');
  */
 router.get('/', (req, res) => {
     Actividad.find((err, actividades) => {
-        if (err) return res.status(400).json({ message: err });
+        if (err) return res.status(400).json({
+            message: err
+        });
         res.status(200).json(actividades);
     });
 });
@@ -39,9 +41,40 @@ router.get('/', (req, res) => {
  * @apiError (400) {Json} message Si no se encuentra la actividad con el id solicitado
  */
 router.get('/:id', (req, res) => {
-    Actividad.findOne({ _id: req.params.id }, (err, actividad) => {
-        if (err) return res.status(400).json({ message: err });
+    Actividad.findOne({
+        _id: req.params.id
+    }, (err, actividad) => {
+        if (err) return res.status(400).json({
+            message: err
+        });
         res.status(200).json(actividad);
+    });
+});
+
+/** 
+ * @api {GET} /api/actividades/consultarActividades/:id/:id2 Obtener las actividades 
+ * con un id de materia y grupos proporcionados
+ * @apiName consultarActividades
+ * @apiGroup Actividad 
+ * 
+ * @apiParam  {String} id Id de la materia
+ * @apiParam  {String} id2 Id del grupo
+ * 
+ * @apiSuccess (200) {StatusCode} statuscode Código HTTP
+ * @apiSuccess (200) {Actividad[]} actividades Actividades encontradas
+ * 
+ * @apiError (400) {StatusCode} statuscode Código HTTP
+ * @apiError (400) {Json} message Si no se encuentran actividades con los id ingresados
+ */
+router.get('/consultarActividades/:id/:id2', (req, res) => {
+    Actividad.find({
+        grupo: req.params.id,
+        materia: req.params.id2
+    }, (err, actividades) => {
+        if (err) return res.status(400).json({
+            message: err
+        });
+        res.status(200).json(actividades);
     });
 });
 
@@ -89,10 +122,15 @@ router.post('/', (req, res) => {
 
     nuevaActividad.save((err, nuevaActividad) => {
         if (err) {
-            return res.status(400).json({ message: err });
+            return res.status(400).json({
+                message: err
+            });
         }
-        res.status(200).json({ message: 'Actividad agregada', object: nuevaActividad });
+        res.status(200).json({
+            message: 'Actividad agregada',
+            object: nuevaActividad
+        });
     });
 });
 
-module.exports = router; 
+module.exports = router;

@@ -25,6 +25,7 @@ import { ConsultarmateriasComponent } from './components/consultarmaterias/consu
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'nuevaActividad', component: NuevaactividadComponent },
+  { path: 'materiasEstudiante', component: ConsultarmateriasComponent },
 ];
 
 @NgModule({

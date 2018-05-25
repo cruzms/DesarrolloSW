@@ -24,4 +24,14 @@ export class ActividadService {
     return this.http.post<Actividad>(`${this.domain}/api/actividades`, nuevaActividad)
       .map(res => res);
   }
+
+  /**
+  * Método encargado de adicionar una nueva actividad en el servidor
+  * @param {Carro} nuevaActividad - actividad que se agregará al servidor
+  * @returns Actividad adicionada
+  */
+  consultarActividades(idGrupo, idMateria) {
+    return this.http.get<Actividad[]>(`${this.domain}/api/actividades/consultarActividades/${idGrupo}/${idMateria}`)
+      .map(res => res);
+  }
 }
