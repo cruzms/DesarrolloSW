@@ -102,6 +102,7 @@ var data = [{
 {
     'model': 'Actividad',
     'documents': [{
+        _id: "5b074186e33fae3a50d579d3",
         titulo: "Ejercicio de sumas",
         integrantes: 1,
         descripcion: "Texto",
@@ -113,6 +114,7 @@ var data = [{
         archivos: []
     },
     {
+        _id: "5b074186e33fae3a50d579d4",
         titulo: "Ejercicio de restas",
         integrantes: 1,
         descripcion: "Texto",
