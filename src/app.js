@@ -29,7 +29,7 @@ const catalogoApiRouter = require('./routes/catalogoApi');
 
 app.set('port', process.env.PORT || 3000);
 app.set('json spaces', 2); //formato de respuesta json
-app.set('view engine', 'html');
+
 //Middlewares
 app.use(cors());
 app.use(express.json());
@@ -37,9 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //Static files
 app.use(express.static(path.join(__dirname, 'public')));
-app.get('/', (req, res) => {
-    res.sendfile('./public/index.html');
-});
+
 //Routes
 app.use('/api', catalogoApiRouter);
 

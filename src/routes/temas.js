@@ -18,7 +18,7 @@ const Tema = require('../models/tema');
  * 
  * @apiParamExample  {Tema} Request-Example:
  *      {
- *          "nombre": "Leyer de los exponentes"
+ *          "nombre": "Leyes de los exponentes"
  *      }
  * 
  * @apiSuccess (200) {StatusCode} statuscode Código HTTP

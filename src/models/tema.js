@@ -5,8 +5,8 @@
  */
 
 const mongoose = require('mongoose');
-const materiaSchema = mongoose.Schema({
+const temaSchema = mongoose.Schema({
     nombre: String
 });
 
-module.exports = mongoose.model('Tema', materiaSchema, 'Temas');
+module.exports = mongoose.model('Tema', temaSchema, 'Temas');

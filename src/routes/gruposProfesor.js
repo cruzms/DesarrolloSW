@@ -8,12 +8,17 @@ const mongoose = require('mongoose');
 const Profesor = require('../models/profesor');
 
 /**
- * Consultar los grupos que tiene un profesor
- * URL: /api/profesores/consultarGrupos
- * Método HTTP: GET
- * @param {String} id - La cédula del profesor 
- * @returns {StatusCode} Código HTTP:200 y la lista de grupos del profesor
- * o Código HTTP:400 y un mensaje indicando el error en la solicitud
+ * @api {GET} /api/profesores/consultarGrupos Consultar los grupos que tiene un profesor
+ * @apiName GetGruposProfesor
+ * @apiGroup Profesor
+ * 
+ * @apiParam  {Number} id La cédula del profesor 
+ * 
+ * @apiSuccess (200) {StatusCode} statuscode Código HTTP
+ * @apiSuccess (200) {grupos[]} grupos Lista de grupos del profesor
+ * 
+ * @apiError (400) {StatusCode} statuscode Código HTTP
+ * @apiError (400) {Json} message Si ocurre un error en la solicitud
  */
 router.get('/:id', (req, res) => {
     Profesor.findOne({

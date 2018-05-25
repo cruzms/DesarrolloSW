@@ -8,12 +8,17 @@ const mongoose = require('mongoose');
 const Materia = require('../models/materia');
 
 /**
- * Consultar los temas que tiene una materia
- * URL: /api/materias/consultarTemas
- * Método HTTP: GET
- * @param {String} id - El id de la materia 
- * @returns {StatusCode} Código HTTP:200 y la lista de temas de la materia
- * o Código HTTP:400 y un mensaje indicando el error en la solicitud
+ * @api {GET} /api/materias/consultarTemas Consultar los temas que tiene una materia
+ * @apiName GetMateriasProfesor
+ * @apiGroup Profesor
+ * 
+ * @apiParam  {String} id El id de la materia 
+ * 
+ * @apiSuccess (200) {StatusCode} statuscode Código HTTP
+ * @apiSuccess (200) {temas[]} temas Lista de temas de la materia
+ * 
+ * @apiError (400) {StatusCode} statuscode Código HTTP
+ * @apiError (400) {Json} message Si ocurre un error en la solicitud
  */
 router.get('/:id', (req, res) => {
     Materia.findOne({

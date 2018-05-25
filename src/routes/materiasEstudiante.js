@@ -7,13 +7,18 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const Estudiante = require('../models/estudiante');
 
-/**
- * Consultar las materias de un estudiante
- * URL: /api/estudiantes/consultarMaterias
- * Método HTTP: GET
- * @param {String} id - El id del estudiante
- * @returns {StatusCode} Código HTTP:200 y la lista de materias del estudiante
- * o Código HTTP:400 y un mensaje indicando el error en la solicitud
+ /**
+ * @api {GET} /api/estudiantes/consultarMaterias Consultar las materias de un estudiante
+ * @apiName GetMateriasEstudiante
+ * @apiGroup Estudiante
+ * 
+ * @apiParam  {String} id El id del estudiante
+ * 
+ * @apiSuccess (200) {StatusCode} statuscode Código HTTP
+ * @apiSuccess (200) {materias[]} materias Lista de materias del estudiante
+ * 
+ * @apiError (400) {StatusCode} statuscode Código HTTP
+ * @apiError (400) {Json} message Si ocurre un error en la solicitud
  */
 router.get('/:id', (req, res) => {
     Estudiante.findOne({

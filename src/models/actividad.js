@@ -5,7 +5,7 @@
  */
 
 const mongoose = require('mongoose');
-const materiaSchema = mongoose.Schema({
+const actividadSchema = mongoose.Schema({
     titulo: {
         type: String,
         required: [true, 'Título es obligatorio']
@@ -53,4 +53,4 @@ const materiaSchema = mongoose.Schema({
     }]
 });
 
-module.exports = mongoose.model('Actividad', materiaSchema, 'Actividades');
+module.exports = mongoose.model('Actividad', actividadSchema, 'Actividades');
