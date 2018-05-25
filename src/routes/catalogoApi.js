@@ -5,6 +5,7 @@
  */
 const router = require('express').Router();
 const profesoresRouter = require('./profesores');
+const estudiantesRouter = require('./estudiantes');
 const materiasRouter = require('./materias');
 const actividadesRouter = require('./actividades');
 const gruposRouter = require('./grupos');
@@ -12,6 +13,7 @@ const temasRouter = require('./temas');
 const archivosRouter = require('./archivos');
 
 router.use('/profesores', profesoresRouter);
+router.use('/estudiantes', estudiantesRouter);
 router.use('/materias', materiasRouter);
 router.use('/actividades', actividadesRouter);
 router.use('/grupos', gruposRouter);

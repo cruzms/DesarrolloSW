@@ -12,8 +12,8 @@ const asignarGrupo = require('./asignarGrupo');
 const materiasProfesor = require('./materiasProfesor');
 const gruposProfesor = require('./gruposProfesor');
 
-router.use('/asignarMateria', asignarMateria);
-router.use('/asignarGrupo', asignarGrupo);
+router.use('', asignarMateria);
+router.use('', asignarGrupo);
 router.use('/consultarMaterias', materiasProfesor);
 router.use('/consultarGrupos', gruposProfesor);
 

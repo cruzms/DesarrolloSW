@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 
 // Servicios
 import { ProfesorService } from './services/profesor.service';
+import { EstudianteService } from './services/estudiante.service';
 import { ActividadService } from './services/actividad.service';
 import { MateriaService } from './services/materia.service';
 import { GrupoService } from './services/grupo.service';
@@ -19,6 +20,7 @@ import { ArchivoService } from './services/archivo.service';
 import { ValidardatosService } from './services/validardatos.service';
 import { NuevaactividadComponent } from './components/nuevaactividad/nuevaactividad.component';
 import { validateConfig } from '@angular/router/src/config';
+import { ConsultarmateriasComponent } from './components/consultarmaterias/consultarmaterias.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,7 +31,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    NuevaactividadComponent
+    NuevaactividadComponent,
+    ConsultarmateriasComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     ProfesorService,
+    EstudianteService,
     ActividadService,
     MateriaService,
     GrupoService,
