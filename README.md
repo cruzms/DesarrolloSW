@@ -52,3 +52,8 @@ Angular:
 ```
 ClienteDesarrolloSW> ng serve
 ```
+## Ejecutar script de la BD
+
+```
+DesarrolloSW> node .\src\seed.js
+```
