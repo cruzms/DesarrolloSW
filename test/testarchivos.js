@@ -12,14 +12,9 @@ let should = chai.should();
 chai.use(chaiHttp);
 
 /**
- * 
- * @test {Get} Prueba obteniendo todas las actividades
- * @testName test GetActividad
- * @testGroup Actividad 
- *
- * @testSuccess (200) {statusCode} statuscode Código HTTP
- * @testSuccess (200) {array}  Vector con todas las actividades
- *
+Prueba del api get actividades donde hacemos una 
+peticion de todas las actividades y nos retorna
+un status 200 y un array con todas las actividades
  */
 describe('/get actividades', () => {
     it('obtener todas las actividades', (done) => {
@@ -35,16 +30,12 @@ describe('/get actividades', () => {
 });
 
 /**
- * 
- * @test {POST} Pruebas de post actividades
- * @testName test PostActividad
- * @testGroup Actividad 
- *
- * @testSuccess (200) {statusCode} statuscode Código HTTP
- * @testSuccess (200) {object}  Objeto con la informacion que devuelve el Post actividad
- * 
- * @testSuccess (400) {StatusCode} statuscode Código HTTP
- * @testSuccess (400) {object} Objeto con el mensaje indicando el error 
+Prueba del api post actividad donde se ingresa
+una actividad que nos retorna un status 200 y un
+objeto con la actividad agregada y mensaje de exito.
+Tambien se hace una prueba dejando espacios sin datos
+y nos retorna un status 400 y con objeto con el mensaje
+de error
  */
 describe('/Post actividad', () => {
     let actividad = {
