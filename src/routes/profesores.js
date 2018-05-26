@@ -95,4 +95,22 @@ router.post('/', (req, res) => {
     });
 });
 
+/**
+ * @api {Delete} /api/profesores/id Elmininar profesores
+ * @apiName DeleteProfesor
+ * @apiGroup Profesor
+ * 
+ * @apiSuccess (200) {StatusCode} statuscode Código HTTP
+ * @apiSuccess (200) {Json} Mensaje de eliminado
+ * 
+ * @apiError (400) {StatusCode} statuscode Código HTTP
+ * @apiError (400) {Json} message Si ocurre un error en la solicitud
+ */
+router.delete('/:id', (req, res) => {
+    Profesor.remove({ _id: req.params.id }, (err, profesores) => {
+        if (err) return res.status(400).json({ message: err });
+        res.status(200).json({message: 'Profesor eliminado'});
+    });
+});
+
 module.exports = router; 
