@@ -40,7 +40,7 @@ const upload = multer({
 
 router.post('/upload', upload.array('archivos'), (req, res) => {
     let files = [];
-    for (file in req.files) {
+    for (var file in req.files) {
         let response = {
             filename: req.files[file].filename,
             originalname: req.files[file].originalname
