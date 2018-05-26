@@ -9,7 +9,7 @@
             <br>
             <div *ngIf="nActividades[i][1]!=0">
               <a href="" [routerLink]="['/ActividadesEstudiante', {materia:materias[i]._id}]" class="text-muted font-weight-bold">Hay
-                <span class="badge badge-success badge-pill">{{nActividades[i][1]}}</span> actividad(es) pendiente(s)</a>
+                <span class="badge badge-primary badge-pill">{{nActividades[i][1]}}</span> actividad(es) pendiente(s)</a>
             </div>
             <div *ngIf="nActividades[i][1]==0">
               <a class="text-muted font-weight-bold">Hay
