@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Grupo } from '../models/Grupo';
 import { environment } from '../../environments/environment';
-import 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GrupoService {

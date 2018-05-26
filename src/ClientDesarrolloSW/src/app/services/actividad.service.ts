@@ -8,13 +8,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Actividad } from '../models/Actividad';
 import { environment } from '../../environments/environment';
-import 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ActividadService {
   domain = environment.api_url;
   constructor(private http: HttpClient) { }
-
+  actividades: Actividad[][] = [];
   /**
   * Método encargado de adicionar una nueva actividad en el servidor
   * @param {Carro} nuevaActividad - actividad que se agregará al servidor

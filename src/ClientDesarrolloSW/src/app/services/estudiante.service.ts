@@ -14,7 +14,7 @@ import { environment } from '../../environments/environment';
 export class EstudianteService {
   domain = environment.api_url;
   constructor(private http: HttpClient) { }
-
+  idEstudiante = '5b074186e33fae3a50d579f7'; // debe existir este id
   /**
   * Método encargado de consultar un estudiante dado un id
   * @param {string} id - id del estudiante a buscar

@@ -21,11 +21,13 @@ import { ValidardatosService } from './services/validardatos.service';
 import { NuevaactividadComponent } from './components/nuevaactividad/nuevaactividad.component';
 import { validateConfig } from '@angular/router/src/config';
 import { ConsultarmateriasComponent } from './components/consultarmaterias/consultarmaterias.component';
+import { ActividadesestudianteComponent } from './components/actividadesestudiante/actividadesestudiante.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'nuevaActividad', component: NuevaactividadComponent },
   { path: 'materiasEstudiante', component: ConsultarmateriasComponent },
+  { path: 'ActividadesEstudiante', component: ActividadesestudianteComponent }
 ];
 
 @NgModule({
@@ -33,7 +35,8 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     NuevaactividadComponent,
-    ConsultarmateriasComponent
+    ConsultarmateriasComponent,
+    ActividadesestudianteComponent
   ],
   imports: [
     BrowserModule,

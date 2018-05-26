@@ -1,0 +1,44 @@
+<h3 class="text-center display-4">Actividades</h3>
+<div class="row">
+  <div class="mt-3 col-md-5 col">
+    <table class="table">
+      <tbody>
+        <tr *ngFor="let actividad of Actividades">
+          <td>
+            <button (click)="verActividad(actividad._id)" class="btn btn-primary btn-lg col text-capitalize">
+              <a>{{actividad.titulo}}</a>
+              <br>
+              <a>{{actividad.fechaLimite | date : 'dd/MM/yyyy'}}</a>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="ActividadSeleccionada!=null" class="col-md-6 ml-5 col">
+    <div class="card bg-light mb-3">
+      <div class="card-header text-center">Actividad</div>
+      <div class="card-body">
+        <h6 class="card-title">Título: {{ActividadSeleccionada.titulo}}</h6>
+        <p class="card-text">Descripción: {{ActividadSeleccionada.descripcion}}</p>
+        <p class="card-text">Objetivos: {{ActividadSeleccionada.objetivos}}</p>
+        <p class="card-text">Num. integrantes: {{ActividadSeleccionada.integrantes}}</p>
+        <p class="card-text">Archivos: </p>
+        <div class="list-group" *ngFor="let archivo of ActividadSeleccionada.archivos">
+          <a class="list-group-item list-group-item-action">
+            {{archivo.nombreOriginal}}
+            <i class="fa fa-arrow-down"></i>
+          </a>
+        </div>
+        <div class="form-group mt-2">
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input class="custom-file-input" id="archivos" name="archivos" type="file" multiple/>
+              <label class="custom-file-label" for="archivos">Cargue la solución</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

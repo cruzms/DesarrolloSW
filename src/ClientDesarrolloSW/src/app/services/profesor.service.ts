@@ -10,7 +10,7 @@ import { Profesor } from '../models/Profesor';
 import { Materia } from '../models/Materia';
 import { Grupo } from '../models/Grupo';
 import { environment } from '../../environments/environment';
-import 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ProfesorService {

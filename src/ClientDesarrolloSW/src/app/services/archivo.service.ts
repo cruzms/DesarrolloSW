@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+// tslint:disable-next-line:import-blacklist
 import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class ArchivoService {
