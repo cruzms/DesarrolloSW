@@ -35,6 +35,12 @@ export class ActividadesestudianteComponent implements OnInit {
         }
       });
     });
+
+    this.Actividades.sort( (a, b) => {
+      const dateA = +new Date(a.fechaLimite);
+      const dateB = +new Date(b.fechaLimite);
+      return  dateB - dateA;
+    });
   }
 
   verActividad(idActividad) {
