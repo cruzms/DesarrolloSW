@@ -112,7 +112,7 @@ router.post('/', (req, res) => {
         titulo: req.body.titulo,
         integrantes: req.body.integrantes,
         descripcion: req.body.descripcion,
-        objetivos: req.body.objetivos,
+        logros: req.body.logros,
         fechaLimite: req.body.fechaLimite,
         grupo: req.body.grupo,
         materia: req.body.materia,

@@ -5,6 +5,7 @@
  */
 
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 // Services
 import { ProfesorService } from '../../services/profesor.service';
 import { ActividadService } from '../../services/actividad.service';
@@ -40,10 +41,12 @@ export class NuevaactividadComponent implements OnInit {
   descripcion: string;
   fechalimite: Date;
   nintegrantes: number;
-  objetivos: string;
+  logros: string;
+  inputEl: HTMLInputElement;
   constructor(private profesorService: ProfesorService, private actividadService: ActividadService,
     private grupoService: GrupoService, private materiaService: MateriaService, temaService: TemaService,
-    private archivoService: ArchivoService, private validardatosService: ValidardatosService, private el: ElementRef) {
+    private archivoService: ArchivoService, private validardatosService: ValidardatosService, private el: ElementRef,
+    private toastr: ToastrService) {
     profesorService.getMateriasProfesor(this.idProfesor).subscribe(materias => {
       this.materias = materias;
     });
@@ -53,6 +56,7 @@ export class NuevaactividadComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.inputEl = this.el.nativeElement.querySelector('#archivos');
   }
 
   onMateriaSelected() {
@@ -77,15 +81,14 @@ export class NuevaactividadComponent implements OnInit {
 
   publicarActividad() {
     const validation = this.validardatosService.ValidarActividad(this.titulo, this.descripcion, this.fechalimite,
-      this.nintegrantes, this.objetivos, this.selectedGrupo, this.selectedMateria, this.selectedTema);
+      this.nintegrantes, this.selectedGrupo, this.selectedMateria, this.selectedTema);
     if (validation.ok) {
-      const inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#archivos');
-      const fileCount: number = inputEl.files.length;
+      const fileCount: number = this.inputEl.files.length;
       const formData = new FormData();
       console.log(fileCount + 'num archivos');
       if (fileCount > 0) {
         for (let index = 0; index < fileCount; index++) {
-          formData.append('archivos', inputEl.files.item(index));
+          formData.append('archivos', this.inputEl.files.item(index));
         }
         this.archivoService.SubirArchivo(formData).subscribe(files => {
           const file = [];
@@ -98,7 +101,7 @@ export class NuevaactividadComponent implements OnInit {
             descripcion: this.descripcion,
             fechaLimite: this.fechalimite,
             integrantes: this.nintegrantes,
-            objetivos: this.objetivos,
+            logros: this.logros,
             grupo: this.selectedGrupo._id,
             materia: this.selectedMateria._id,
             tema: this.selectedTema._id,
@@ -114,18 +117,24 @@ export class NuevaactividadComponent implements OnInit {
           descripcion: this.descripcion,
           fechaLimite: this.fechalimite,
           integrantes: this.nintegrantes,
-          objetivos: this.objetivos,
+          logros: this.logros,
           grupo: this.selectedGrupo._id,
           materia: this.selectedMateria._id,
           tema: this.selectedTema._id,
           archivos: []
         };
         this.actividadService.addActividad(newActividad).subscribe(actividad => {
-          alert('Actividad agregada');
+          this.toastr.success('Actividad agregada', '', {
+            timeOut: 5000,
+            positionClass: 'toast-top-center'
+          });
         });
       }
     } else {
-      alert(validation.message);
+      this.toastr.error(validation.message, 'Error', {
+        timeOut: 5000,
+        positionClass: 'toast-top-center'
+      });
     }
   }
 }

@@ -16,11 +16,10 @@ const actividadSchema = mongoose.Schema({
     },
     descripcion: {
         type: String,
-        required: [true, 'Descripcion es obligatorio']
+        required: [true, 'Descripción es obligatorio']
     },
-    objetivos: {
-        type: String,
-        required: [true, 'Objetivos es obligatorio']
+    logros: {
+        type: String
     },
     fechaLimite: {
         type: Date,

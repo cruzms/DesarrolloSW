@@ -40,6 +40,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Routes
 app.use('/api', catalogoApiRouter);
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
 //Start server
 app.listen(app.get('port'), () => {

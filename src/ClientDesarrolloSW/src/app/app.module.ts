@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -22,6 +24,7 @@ import { NuevaactividadComponent } from './components/nuevaactividad/nuevaactivi
 import { validateConfig } from '@angular/router/src/config';
 import { ConsultarmateriasComponent } from './components/consultarmaterias/consultarmaterias.component';
 import { ActividadesestudianteComponent } from './components/actividadesestudiante/actividadesestudiante.component';
+import { CustomOnChangeDirective } from './directives/custom-on-change.directive';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,13 +39,16 @@ const appRoutes: Routes = [
     HomeComponent,
     NuevaactividadComponent,
     ConsultarmateriasComponent,
-    ActividadesestudianteComponent
+    ActividadesestudianteComponent,
+    CustomOnChangeDirective
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     ProfesorService,

@@ -9,7 +9,7 @@ export class Actividad {
     descripcion: string;
     fechaLimite: Date;
     integrantes: number;
-    objetivos: string;
+    logros: string;
     archivos: any;
     grupo: string;
     materia: string;

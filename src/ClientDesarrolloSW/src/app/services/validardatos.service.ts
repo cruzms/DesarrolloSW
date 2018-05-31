@@ -17,31 +17,34 @@ export class ValidardatosService {
   * @param {Actividad} actividad - actividad que se agregará al servidor
   * @returns Mensaje validación
   */
-  ValidarActividad(titulo, descripcion, fechaLimite, integrantes, objetivos, grupo, materia, tema) {
+  ValidarActividad(titulo, descripcion, fechaLimite, integrantes, grupo, materia, tema) {
     if (titulo == null || descripcion === '') {
-      return { ok: false, message: 'Título incorrecto'};
+      return { ok: false, message: 'El título es obligatorio' };
     }
     if (descripcion == null || descripcion === '') {
-      return { ok: false, message: 'Descripción incorrecta'};
+      return { ok: false, message: 'La descripción es obligatoria' };
     }
-    if (fechaLimite == null || new Date() > new Date(fechaLimite)) {
-      return { ok: false, message: 'Fecha incorrecta'};
+    if (fechaLimite == null) {
+      return { ok: false, message: 'La fecha es obligatoria' };
+    }
+    if (new Date() > new Date(fechaLimite)) {
+      return { ok: false, message: 'Fecha no válida, el día seleccionado es una fecha anterior' };
     }
     if (integrantes == null) {
-      return { ok: false, message: 'Número de integrantes incorrecto'};
+      return { ok: false, message: 'El número de integrantes es obligatorio' };
     }
-    if (objetivos == null || objetivos === '') {
-      return { ok: false, message: 'Ingrese objetivos'};
+    if (integrantes < 0) {
+      return { ok: false, message: 'El número de integrantes debe ser mayor a 0' };
     }
     if (grupo == null) {
-      return { ok: false, message: 'Seleccione un grupo'};
+      return { ok: false, message: 'Seleccione un grupo' };
     }
     if (materia == null) {
-      return { ok: false, message: 'Seleccione una materia'};
+      return { ok: false, message: 'Seleccione una materia' };
     }
     if (tema == null) {
-      return { ok: false, message: 'Seleccione un tema'};
+      return { ok: false, message: 'Seleccione un tema' };
     }
-    return { ok: true, message: 'ok'};
+    return { ok: true, message: 'ok' };
   }
 }

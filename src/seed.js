@@ -34,6 +34,14 @@ var data = [{
             {
                 _id: "5b074186e33fae3a50d579f2",
                 nombre: "Restas"
+            },
+            {
+                _id: "5b1080a61b2c743357abe441",
+                nombre: "Multiplicaciones"
+            },
+            {
+                _id: "5b1080a61b2c743357abe442",
+                nombre: "Divisiones"
             }
         ]
     },
@@ -45,7 +53,7 @@ var data = [{
             },
             {
                 _id: "5b074186e33fae3a50d579f4",
-                nombre: "Septimo"
+                nombre: "Séptimo"
             }
         ]
     },
@@ -53,7 +61,7 @@ var data = [{
         'model': 'Materia',
         'documents': [{
                 _id: "5b074186e33fae3a50d579f5",
-                nombre: "Matematicas",
+                nombre: "Matemáticas",
                 temas: ["5b074186e33fae3a50d579f1", "5b074186e33fae3a50d579f2"]
             },
             {
@@ -68,14 +76,14 @@ var data = [{
         'documents': [{
                 _id: "1053854",
                 nombre: "David",
-                apellido: "ospina",
+                apellido: "Ospina",
                 materias: ["5b074186e33fae3a50d579f5"],
                 grupos: ["5b074186e33fae3a50d579f3", "5b074186e33fae3a50d579f4"]
             },
             {
                 _id: "1050111",
                 nombre: "Falcao",
-                apellido: "garcia",
+                apellido: "Garcia",
                 materias: ["5b074186e33fae3a50d579f6"],
                 grupos: ["5b074186e33fae3a50d579f4"]
             }
@@ -86,7 +94,7 @@ var data = [{
         'documents': [{
                 _id: "5b074186e33fae3a50d579f7",
                 nombre: "Pepito",
-                apellido: "Perez",
+                apellido: "Pérez",
                 materias: ["5b074186e33fae3a50d579f5", "5b074186e33fae3a50d579f6"],
                 grupo: "5b074186e33fae3a50d579f3"
             },

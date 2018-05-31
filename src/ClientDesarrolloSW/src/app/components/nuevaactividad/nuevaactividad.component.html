@@ -16,7 +16,7 @@
     </div>
     <div class="input-group col-xs-3 mt-3 mb-3">
       <input type="text" name="titulo" [(ngModel)]="titulo" placeholder="Título" class="form-control">
-      <input type="number" name="nintegrantes" [(ngModel)]="nintegrantes" placeholder="Núm. integrantes" class="form-control">
+      <input type="number" name="nintegrantes" [(ngModel)]="nintegrantes" placeholder="Núm. integrantes" class="form-control" min="1">
     </div>
     <div class="form-group">
       <label for="grupo">Tema</label>
@@ -34,9 +34,25 @@
     <div class="form-group">
       <div class="input-group mb-3">
         <div class="custom-file">
-          <input class="custom-file-input" id="archivos" name="archivos" type="file" multiple/>
+          <input class="custom-file-input" id="archivos" name="archivos" type="file" multiple appCustomOnChange/>
           <label class="custom-file-label" for="archivos">Seleccione archivos</label>
         </div>
+      </div>
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let archivo of inputEl.files">
+              <td>
+                {{archivo.name}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -47,9 +63,9 @@
       <input type="date" [(ngModel)]="fechalimite" placeholder="yyyy-MM-dd" />
     </div>
     <div class="card bg-light mb-3">
-      <div class="card-header">Objetivos</div>
+      <div class="card-header">Logros</div>
       <div class="card-body">
-        <textarea class="form-control card-text" rows="15" [(ngModel)]="objetivos"></textarea>
+        <textarea class="form-control card-text" rows="15" [(ngModel)]="logros"></textarea>
       </div>
     </div>
   </div>
