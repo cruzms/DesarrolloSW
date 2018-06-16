@@ -18,7 +18,7 @@ const Grupo = require('../models/grupo');
  * 
  * @apiParamExample  {Grupo} Request-Example:
  *      {
- *          "nombre": "Octavo A"
+ *          "nombre": "B"
  *      }
  * 
  * @apiSuccess (200) {StatusCode} statuscode Código HTTP

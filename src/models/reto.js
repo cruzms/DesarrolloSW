@@ -26,10 +26,10 @@ const retoSchema = mongoose.Schema({
       imagen: mongoose.Schema.Types.String
     }]
   }],
-  grupo: {
+  gradoporgrupo: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Grupo',
-    required: [true, 'Grupo es obligatorio']
+    ref: 'GradoporGrupo',
+    required: [true, 'GradoporGrupo es obligatorio']
   },
   materia: {
     type: mongoose.Schema.Types.ObjectId,

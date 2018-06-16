@@ -57,7 +57,7 @@ router.get('/', (req, res) => {
             ]
           }
         ],
-        "grupo": "ID",
+        "gradoporgrupo": "ID",
         "materia": "ID",
         "tema": "ID"        
       }
