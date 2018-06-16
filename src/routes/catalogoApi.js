@@ -11,6 +11,7 @@ const actividadesRouter = require('./actividades');
 const gruposRouter = require('./grupos');
 const temasRouter = require('./temas');
 const archivosRouter = require('./archivos');
+const retosRouter = require('./retos');
 
 router.use('/profesores', profesoresRouter);
 router.use('/estudiantes', estudiantesRouter);
@@ -19,5 +20,6 @@ router.use('/actividades', actividadesRouter);
 router.use('/grupos', gruposRouter);
 router.use('/temas', temasRouter);
 router.use('/archivos', archivosRouter);
+router.use('/retos', retosRouter);
 
 module.exports = router;
