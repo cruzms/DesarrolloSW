@@ -24,12 +24,12 @@ router.get('/:id', (req, res) => {
     Profesor.findOne({
             _id: req.params.id
         })
-        .populate('grupos')
+        .populate('gradosporgrupos')
         .exec((err, profesor) => {
             if (err) return res.status(400).json({
                 message: err
             });
-            res.status(200).json(profesor.grupos);
+            res.status(200).json(profesor.gradosporgrupos);
         });
 });
 module.exports = router;

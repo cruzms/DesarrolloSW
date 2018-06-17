@@ -13,9 +13,9 @@ const estudianteSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Materia'
     }],
-    grupo: {
+    gradoporgrupo: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Grupo'
+        ref: 'GradoporGrupo'
     }
 });
 

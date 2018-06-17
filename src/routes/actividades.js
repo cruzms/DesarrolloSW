@@ -68,7 +68,7 @@ router.get('/:id', (req, res) => {
  */
 router.get('/consultarActividades/:id/:id2', (req, res) => {
     Actividad.find({
-        grupo: req.params.id,
+        gradoporgrupo: req.params.id,
         materia: req.params.id2
     }, (err, actividades) => {
         if (err) return res.status(400).json({
@@ -94,7 +94,7 @@ router.get('/consultarActividades/:id/:id2', (req, res) => {
  *          "descripcion": "Texto",
  *          "objetivos": "Texto",
  *          "fechaLimite": "01/4/2016",
- *          "grupo": "ID grupo",
+ *          "gradoporgrupo": "ID grupo",
  *          "materia": "ID materia",
  *          "tema": "ID tema",
  *          "archivos": ["ID 1", "ID 1"]
@@ -114,7 +114,7 @@ router.post('/', (req, res) => {
         descripcion: req.body.descripcion,
         logros: req.body.logros,
         fechaLimite: req.body.fechaLimite,
-        grupo: req.body.grupo,
+        gradoporgrupo: req.body.gradoporgrupo,
         materia: req.body.materia,
         tema: req.body.tema,
         archivos: req.body.archivos

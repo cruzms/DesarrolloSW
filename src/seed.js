@@ -163,14 +163,14 @@ var data = [{
                 nombre: "David",
                 apellido: "Ospina",
                 materias: ["5b074186e33fae3a50d579f5"],
-                grupos: ["5b074186e33fae3a50d579f3", "5b074186e33fae3a50d579f4"]
+                gradosporgrupos: ["5b074186e33fae3a50d579d7", "5b074186e33fae3a50d579d8"]
             },
             {
                 _id: "1050111",
                 nombre: "Falcao",
                 apellido: "Garcia",
                 materias: ["5b074186e33fae3a50d579f6"],
-                grupos: ["5b074186e33fae3a50d579f4"]
+                gradosporgrupos: ["5b074186e33fae3a50d579d9"]
             }
         ]
     },
@@ -181,14 +181,14 @@ var data = [{
                 nombre: "Pepito",
                 apellido: "Pérez",
                 materias: ["5b074186e33fae3a50d579f5", "5b074186e33fae3a50d579f6"],
-                grupo: "5b074186e33fae3a50d579f3"
+                gradopogrupo: "5b074186e33fae3a50d579d7"
             },
             {
                 _id: "5b074186e33fae3a50d579f8",
                 nombre: "Ana",
                 apellido: "Silva",
                 materias: ["5b074186e33fae3a50d579f6"],
-                grupo: "5b074186e33fae3a50d579f4"
+                gradoporgrupo: "5b074186e33fae3a50d579d8"
             }
         ]
     },
@@ -201,7 +201,7 @@ var data = [{
                 descripcion: "Seleccionar dos numeros random y sumarlos.",
                 objetivos: "Aprender a sumar correctamente.",
                 fechaLimite: "07/4/2018",
-                grupo: "5b074186e33fae3a50d579f3",
+                gradoporgrupo: "5b074186e33fae3a50d579d7",
                 materia: "5b074186e33fae3a50d579f5",
                 tema: "5b074186e33fae3a50d579f1",
                 archivos: [{
@@ -219,7 +219,7 @@ var data = [{
                 descripcion: "Seleccionar dos numeros random y restarlos.",
                 objetivos: "Aprender a restar correctamente.",
                 fechaLimite: "01/7/2018",
-                grupo: "5b074186e33fae3a50d579f3",
+                gradoporgrupo: "5b074186e33fae3a50d579d8",
                 materia: "5b074186e33fae3a50d579f5",
                 tema: "5b074186e33fae3a50d579f2",
                 archivos: [{

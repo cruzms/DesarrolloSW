@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const actividadSchema = mongoose.Schema({
     titulo: {
         type: String,
+        unique: [true, 'Título ya existe'],
         required: [true, 'Título es obligatorio']
     },
     integrantes: {
@@ -25,10 +26,10 @@ const actividadSchema = mongoose.Schema({
         type: Date,
         required: [true, 'Fecha Límite es obligatorio']
     },
-    grupo: {
+    gradoporgrupo: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Grupo',
-        required: [true, 'Grupo es obligatorio']
+        ref: 'GradoporGrupo',
+        required: [true, 'Grado es obligatorio']
     },
     materia: {
         type: mongoose.Schema.Types.ObjectId,
