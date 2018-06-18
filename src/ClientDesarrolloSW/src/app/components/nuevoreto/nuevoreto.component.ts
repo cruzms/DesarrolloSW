@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 // Services
 import { ProfesorService } from '../../services/profesor.service';
 import { ActividadService } from '../../services/actividad.service';
-import { MateriaService } from '../../services/materia.service';
+import { TemaService } from '../../services/tema.service';
 import { ArchivoService } from '../../services/archivo.service';
 import { ValidardatosService } from '../../services/validardatos.service';
 // Models
@@ -30,7 +30,7 @@ export class NuevoretoComponent implements OnInit {
   materias: Materia[];
   temas: Tema[];
   selectedGrupoNombre = '';
-  selectedGrupo: GradoporGrupo;
+  selectedGrado: GradoporGrupo;
   selectedMateriaNombre: '';
   selectedMateria: Materia;
   selectedTemaNombre: '';
@@ -39,7 +39,7 @@ export class NuevoretoComponent implements OnInit {
   preguntas: any;
   inputEl: HTMLInputElement;
   constructor(private profesorService: ProfesorService, private actividadService: ActividadService,
-    private materiaService: MateriaService, private archivoService: ArchivoService,
+    private temaService: TemaService, private archivoService: ArchivoService,
     private validardatosService: ValidardatosService, private el: ElementRef,
     private toastr: ToastrService) {
     profesorService.getMateriasProfesor(this.idProfesor).subscribe(materias => {
@@ -56,21 +56,24 @@ export class NuevoretoComponent implements OnInit {
 
   onMateriaSelected() {
     this.selectedMateria = this.materias.find(materia => materia.nombre === this.selectedMateriaNombre);
-    this.getTemas(this.selectedMateria._id);
+    this.getTemas();
   }
 
-  onGrupoSelected() {
-    this.selectedGrupo = this.grupos.find(grupo => grupo.nombre === this.selectedGrupoNombre);
+  onGradoSelected() {
+    this.selectedGrado = this.grupos.find(grupo => grupo.nombre === this.selectedGrupoNombre);
+    this.getTemas();
   }
 
   onTemaSelected() {
     this.selectedTema = this.temas.find(tema => tema.nombre === this.selectedTemaNombre);
   }
 
-  getTemas(idMateria) {
-    this.materiaService.getTemasMateria(idMateria).subscribe(temas => {
-      this.temas = temas;
-    });
+  getTemas() {
+    if (this.selectedGrado !== null && this.selectedMateria !== null) {
+      this.temaService.getTemasMateria_Grupo(this.selectedMateria._id, this.selectedGrado.grado).subscribe(temas => {
+        this.temas = temas;
+      });
+    }
   }
 
   publicarReto() {

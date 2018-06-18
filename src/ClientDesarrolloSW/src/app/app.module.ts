@@ -15,7 +15,7 @@ import { ProfesorService } from './services/profesor.service';
 import { EstudianteService } from './services/estudiante.service';
 import { ActividadService } from './services/actividad.service';
 import { RetoService } from './services/reto.service';
-import { MateriaService } from './services/materia.service';
+import { TemaService } from './services/tema.service';
 import { ArchivoService } from './services/archivo.service';
 import { ValidardatosService } from './services/validardatos.service';
 import { NuevaactividadComponent } from './components/nuevaactividad/nuevaactividad.component';
@@ -56,7 +56,7 @@ const appRoutes: Routes = [
     EstudianteService,
     ActividadService,
     RetoService,
-    MateriaService,
+    TemaService,
     ArchivoService,
     ValidardatosService
   ],

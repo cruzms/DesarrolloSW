@@ -4,7 +4,7 @@
   <div class="col-md-7 col">
     <div class="form-group">
       <label for="grupo">Grupo</label>
-      <select class="form-control" [(ngModel)]="selectedGrupoNombre" (ngModelChange)="onGrupoSelected()">
+      <select class="form-control" [(ngModel)]="selectedGrupoNombre" (ngModelChange)="onGradoSelected()">
         <option *ngFor="let grupo of grupos" [value]="grupo.nombre">{{grupo.nombre}}</option>
       </select>
     </div>

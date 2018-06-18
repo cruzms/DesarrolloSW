@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 // Services
 import { EstudianteService } from '../../services/estudiante.service';
 import { ActividadService } from '../../services/actividad.service';
-import { MateriaService } from '../../services/materia.service';
 // Models
 import { Actividad } from '../../models/Actividad';
 import { Materia } from '../../models/Materia';
@@ -24,8 +23,7 @@ export class ConsultarmateriasComponent implements OnInit {
   estudiante: Estudiante;
   materias: Materia[];
   nActividades: any[][] = [];
-  constructor(private estudianteService: EstudianteService, private actividadService: ActividadService,
-    private materiaService: MateriaService) {
+  constructor(private estudianteService: EstudianteService, private actividadService: ActividadService) {
     this.actividadService.actividades = [];
   }
 
@@ -34,9 +32,8 @@ export class ConsultarmateriasComponent implements OnInit {
       this.estudiante = estudiante;
       this.estudianteService.getMateriasEstudiante(this.estudiante._id).subscribe(materias => {
         this.materias = materias;
-
         this.materias.forEach(element => {
-          this.actividadService.consultarActividades(this.estudiante.grupo, element._id).subscribe(actividades => {
+          this.actividadService.consultarActividades(this.estudiante.gradoporgrupo, element._id).subscribe(actividades => {
             this.actividadService.actividades.push(actividades);
             this.nActividades.push([element.nombre, actividades.length, element._id]);
           });

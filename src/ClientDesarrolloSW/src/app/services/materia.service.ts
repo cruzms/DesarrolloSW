@@ -15,13 +15,4 @@ export class MateriaService {
   domain = environment.api_url;
   constructor(private http: HttpClient) { }
 
-  /**
-    * Método encargado de consultar las materias de un profesor
-    * @param {string} idProfesor - id del profesor
-    * @returns Materias del profesor ingresado
-    */
-  getTemasMateria(idMateria) {
-    return this.http.get<Tema[]>(`${this.domain}/api/materias/consultarTemas/${idMateria}`)
-      .map(res => res);
-  }
 }

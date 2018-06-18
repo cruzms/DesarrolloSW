@@ -8,5 +8,5 @@ export class Estudiante {
     nombre: string;
     apellido: string;
     materias: string[];
-    grupo: string;
+    gradoporgrupo: string;
 }

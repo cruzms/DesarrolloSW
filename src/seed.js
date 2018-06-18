@@ -169,7 +169,7 @@ var data = [{
         nombre: "David",
         apellido: "Ospina",
         materias: ["5b074186e33fae3a50d579f5"],
-        gradosporgrupos: ["5b074186e33fae3a50d579d7", "5b074186e33fae3a50d579d8"]
+        gradosporgrupos: ["5b074186e33fae3a50d579d7", "5b074186e33fae3a50d579d8", "5b074186e33fae3a50d579d9"]
     },
     {
         _id: "1050111",
@@ -187,7 +187,7 @@ var data = [{
         nombre: "Pepito",
         apellido: "Pérez",
         materias: ["5b074186e33fae3a50d579f5", "5b074186e33fae3a50d579f6"],
-        gradopogrupo: "5b074186e33fae3a50d579d7"
+        gradoporgrupo: "5b074186e33fae3a50d579d7"
     },
     {
         _id: "5b074186e33fae3a50d579f8",
