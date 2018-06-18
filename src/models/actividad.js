@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 const actividadSchema = mongoose.Schema({
     titulo: {
         type: String,
-        unique: [true, 'Título ya existe'],
         required: [true, 'Título es obligatorio']
     },
     integrantes: {

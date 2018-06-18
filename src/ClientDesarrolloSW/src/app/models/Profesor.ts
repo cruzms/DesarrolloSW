@@ -8,5 +8,5 @@ export class Profesor {
     nombre: string;
     apellido: string;
     materias: string[];
-    grupos: string[];
+    gradosporgrupos: string[];
 }

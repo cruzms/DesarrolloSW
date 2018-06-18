@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Profesor } from '../models/Profesor';
 import { Materia } from '../models/Materia';
-import { Grupo } from '../models/Grupo';
+import { GradoporGrupo } from '../models/GradoporGrupo';
 import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/map';
 
@@ -43,7 +43,7 @@ export class ProfesorService {
     * @returns Grupos del profesor ingresado
     */
    getGruposProfesor(idProfesor) {
-    return this.http.get<Grupo[]>(`${this.domain}/api/profesores/consultarGrupos/${idProfesor}`)
+    return this.http.get<GradoporGrupo[]>(`${this.domain}/api/profesores/consultarGrupos/${idProfesor}`)
       .map(res => res);
   }
 }

@@ -9,15 +9,13 @@ import { ToastrService } from 'ngx-toastr';
 // Services
 import { ProfesorService } from '../../services/profesor.service';
 import { ActividadService } from '../../services/actividad.service';
-import { GrupoService } from '../../services/grupo.service';
 import { MateriaService } from '../../services/materia.service';
-import { TemaService } from '../../services/tema.service';
 import { ArchivoService } from '../../services/archivo.service';
 import { ValidardatosService } from '../../services/validardatos.service';
 // Models
 import { Profesor } from '../../models/Profesor';
 import { Actividad } from '../../models/Actividad';
-import { Grupo } from '../../models/Grupo';
+import { GradoporGrupo } from '../../models/GradoporGrupo';
 import { Materia } from '../../models/Materia';
 import { Tema } from '../../models/Tema';
 
@@ -28,11 +26,11 @@ import { Tema } from '../../models/Tema';
 })
 export class NuevaactividadComponent implements OnInit {
   idProfesor = 1053854; // Debe existir este id
-  grupos: Grupo[];
+  grupos: GradoporGrupo[];
   materias: Materia[];
   temas: Tema[];
   selectedGrupoNombre = '';
-  selectedGrupo: Grupo;
+  selectedGrupo: GradoporGrupo;
   selectedMateriaNombre: string;
   selectedMateria: Materia;
   selectedTemaNombre: string;
@@ -44,8 +42,8 @@ export class NuevaactividadComponent implements OnInit {
   logros: string;
   inputEl: HTMLInputElement;
   constructor(private profesorService: ProfesorService, private actividadService: ActividadService,
-    private grupoService: GrupoService, private materiaService: MateriaService, temaService: TemaService,
-    private archivoService: ArchivoService, private validardatosService: ValidardatosService, private el: ElementRef,
+    private materiaService: MateriaService, private archivoService: ArchivoService,
+    private validardatosService: ValidardatosService, private el: ElementRef,
     private toastr: ToastrService) {
     profesorService.getMateriasProfesor(this.idProfesor).subscribe(materias => {
       this.materias = materias;
@@ -62,7 +60,6 @@ export class NuevaactividadComponent implements OnInit {
   onMateriaSelected() {
     this.selectedMateria = this.materias.find(materia => materia.nombre === this.selectedMateriaNombre);
     this.getTemas(this.selectedMateria._id);
-    console.log(new Date().getUTCDate + '>' + new Date(this.fechalimite).getUTCDate);
   }
 
   onGrupoSelected() {
@@ -85,7 +82,6 @@ export class NuevaactividadComponent implements OnInit {
     if (validation.ok) {
       const fileCount: number = this.inputEl.files.length;
       const formData = new FormData();
-      console.log(fileCount + 'num archivos');
       if (fileCount > 0) {
         for (let index = 0; index < fileCount; index++) {
           formData.append('archivos', this.inputEl.files.item(index));
@@ -102,13 +98,16 @@ export class NuevaactividadComponent implements OnInit {
             fechaLimite: this.fechalimite,
             integrantes: this.nintegrantes,
             logros: this.logros,
-            grupo: this.selectedGrupo._id,
+            gradoporgrupo: this.selectedGrupo._id,
             materia: this.selectedMateria._id,
             tema: this.selectedTema._id,
             archivos: file
           };
           this.actividadService.addActividad(newActividad).subscribe(actividad => {
-            alert('Actividad agregada');
+            this.toastr.success('Actividad agregada', '', {
+              timeOut: 5000,
+              positionClass: 'toast-top-center'
+            });
           });
         });
       } else {
@@ -118,7 +117,7 @@ export class NuevaactividadComponent implements OnInit {
           fechaLimite: this.fechalimite,
           integrantes: this.nintegrantes,
           logros: this.logros,
-          grupo: this.selectedGrupo._id,
+          gradoporgrupo: this.selectedGrupo._id,
           materia: this.selectedMateria._id,
           tema: this.selectedTema._id,
           archivos: []

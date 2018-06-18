@@ -11,7 +11,7 @@ export class Actividad {
     integrantes: number;
     logros: string;
     archivos: any;
-    grupo: string;
+    gradoporgrupo: string;
     materia: string;
     tema: string;
 }

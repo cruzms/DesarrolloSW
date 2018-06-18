@@ -1,5 +1,5 @@
 /**
- * @description Servicio encargado de la gestión de grupos del servidor
+ * @description Servicio encargado de la gestión de actividades del servidor
  * @author Yonifer Gallego Aguirre
  * @version 1.0
  */
@@ -26,9 +26,8 @@ export class ActividadService {
   }
 
   /**
-  * Método encargado de adicionar una nueva actividad en el servidor
-  * @param {Carro} nuevaActividad - actividad que se agregará al servidor
-  * @returns Actividad adicionada
+  * Método encargado de consultar una actividad en el servidor
+  * @returns Actividad consultada
   */
   consultarActividades(idGrupo, idMateria) {
     return this.http.get<Actividad[]>(`${this.domain}/api/actividades/consultarActividades/${idGrupo}/${idMateria}`)
