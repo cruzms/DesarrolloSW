@@ -6,11 +6,7 @@
 
 const mongoose = require('mongoose');
 const materiaSchema = mongoose.Schema({
-    nombre: String,
-    temas: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Tema'
-    }]
+    nombre: String    
 });
 
 module.exports = mongoose.model('Materia', materiaSchema, 'Materias');

@@ -61,4 +61,24 @@ router.get('/:id', (req, res) => {
     });
 });
 
+/** 
+ * @api {GET} /api/temas/:materia/:grado Obtener los temas de un grado y una materia
+ * @apiName GetTemas
+ * @apiGroup Tema 
+ * 
+ * @apiParam {String} materia Id de la materia
+ * @apiParam {String} grado Id del grupo
+ * 
+ * @apiSuccess (200) {StatusCode} statuscode Código HTTP
+ * @apiSuccess (200) {Tema[]} temas Lista de temas
+ * 
+ * @apiError (400) {StatusCode} statuscode Código HTTP
+ * @apiError (400) {Json} message Si no se encuentran temas
+ */
+router.get('/:materia/:grado', (req, res) => {
+    Tema.find({ materia: req.params.materia, grado: req.params.grado }, (err, temas) => {
+        if (err) return res.status(400).json({ message: err });
+        res.status(200).json(temas);
+    });
+});
 module.exports = router; 
