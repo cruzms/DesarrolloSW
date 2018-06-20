@@ -108,6 +108,22 @@ router.get('/consultarActividades/:id/:id2', (req, res) => {
  * @apiError (400) {Json} message Mensaje indicando el error en la solicitud
  */
 router.post('/', (req, res) => {
+
+    Actividad.find({
+        profesor: req.body.profesor,
+        titulo: req.body.titulo
+    }, (err, actividad) => {
+        if (err) return res.status(400).json({
+            message: err
+        });
+
+        if (actividad != null) {
+            return res.status(400).json({
+                message: 'El título de la activdad ya existe'
+            });
+        }
+    });
+
     let nuevaActividad = new Actividad({
         titulo: req.body.titulo,
         integrantes: req.body.integrantes,
@@ -117,7 +133,8 @@ router.post('/', (req, res) => {
         gradoporgrupo: req.body.gradoporgrupo,
         materia: req.body.materia,
         tema: req.body.tema,
-        archivos: req.body.archivos
+        archivos: req.body.archivos,
+        profesor: req.body.profesor
     });
 
     nuevaActividad.save((err, nuevaActividad) => {
@@ -147,7 +164,7 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
     Actividad.remove({ _id: req.params.id }, (err, actividades) => {
         if (err) return res.status(400).json({ message: err });
-        res.status(200).json({message: 'Actividad eliminada'});
+        res.status(200).json({ message: 'Actividad eliminada' });
     });
 });
 

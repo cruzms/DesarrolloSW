@@ -73,9 +73,11 @@ router.post('/', (req, res) => {
   let nuevoReto = new Reto({
     nombre: req.body.nombre,
     preguntas: req.body.preguntas,
-    grupo: req.body.grupo,
+    gradoporgrupo: req.body.gradoporgrupo,
     materia: req.body.materia,
-    tema: req.body.tema
+    tema: req.body.tema,
+    profesor: req.body.profesor,
+    publicado: req.body.publicado
   });
 
   nuevoReto.save((err, nuevoReto) => {
