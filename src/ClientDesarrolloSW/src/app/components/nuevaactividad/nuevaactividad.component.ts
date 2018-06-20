@@ -132,6 +132,11 @@ export class NuevaactividadComponent implements OnInit {
             timeOut: 5000,
             positionClass: 'toast-top-center'
           });
+        }, err => {
+          this.toastr.error(err.error.message, '', {
+            timeOut: 5000,
+            positionClass: 'toast-top-center'
+          });
         });
       }
     } else {

@@ -109,7 +109,7 @@ router.get('/consultarActividades/:id/:id2', (req, res) => {
  */
 router.post('/', (req, res) => {
 
-    Actividad.find({
+    Actividad.findOne({
         profesor: req.body.profesor,
         titulo: req.body.titulo
     }, (err, actividad) => {
@@ -117,36 +117,36 @@ router.post('/', (req, res) => {
             message: err
         });
 
-        if (actividad != null) {
+        if (actividad == undefined) {
+            let nuevaActividad = new Actividad({
+                titulo: req.body.titulo,
+                integrantes: req.body.integrantes,
+                descripcion: req.body.descripcion,
+                logros: req.body.logros,
+                fechaLimite: req.body.fechaLimite,
+                gradoporgrupo: req.body.gradoporgrupo,
+                materia: req.body.materia,
+                tema: req.body.tema,
+                archivos: req.body.archivos,
+                profesor: req.body.profesor
+            });
+
+            nuevaActividad.save((err, nuevaActividad) => {
+                if (err) {
+                    return res.status(400).json({
+                        message: err
+                    });
+                }
+                res.status(200).json({
+                    message: 'Actividad agregada',
+                    object: nuevaActividad
+                });
+            });
+        } else {
             return res.status(400).json({
-                message: 'El título de la activdad ya existe'
+                message: 'El título de la actividad ya existe'
             });
         }
-    });
-
-    let nuevaActividad = new Actividad({
-        titulo: req.body.titulo,
-        integrantes: req.body.integrantes,
-        descripcion: req.body.descripcion,
-        logros: req.body.logros,
-        fechaLimite: req.body.fechaLimite,
-        gradoporgrupo: req.body.gradoporgrupo,
-        materia: req.body.materia,
-        tema: req.body.tema,
-        archivos: req.body.archivos,
-        profesor: req.body.profesor
-    });
-
-    nuevaActividad.save((err, nuevaActividad) => {
-        if (err) {
-            return res.status(400).json({
-                message: err
-            });
-        }
-        res.status(200).json({
-            message: 'Actividad agregada',
-            object: nuevaActividad
-        });
     });
 });
 
@@ -162,9 +162,15 @@ router.post('/', (req, res) => {
  * @apiError (400) {Json} message Si ocurre un error en la solicitud
  */
 router.delete('/:id', (req, res) => {
-    Actividad.remove({ _id: req.params.id }, (err, actividades) => {
-        if (err) return res.status(400).json({ message: err });
-        res.status(200).json({ message: 'Actividad eliminada' });
+    Actividad.remove({
+        _id: req.params.id
+    }, (err, actividades) => {
+        if (err) return res.status(400).json({
+            message: err
+        });
+        res.status(200).json({
+            message: 'Actividad eliminada'
+        });
     });
 });
 

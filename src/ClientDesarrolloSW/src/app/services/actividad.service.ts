@@ -8,6 +8,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Actividad } from '../models/Actividad';
 import { environment } from '../../environments/environment';
+// tslint:disable-next-line:import-blacklist
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -30,7 +32,8 @@ export class ActividadService {
   * @returns Actividad consultada
   */
   consultarActividades(idGrupo, idMateria) {
-    return this.http.get<Actividad[]>(`${this.domain}/api/actividades/consultarActividades/${idGrupo}/${idMateria}`)
-      .map(res => res);
+    return this.http.get(`${this.domain}/api/actividades/consultarActividades/${idGrupo}/${idMateria}`)
+      .map((res: Response) => res)
+      .catch((err: Response) => Observable.throw(err));
   }
 }
