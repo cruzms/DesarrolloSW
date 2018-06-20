@@ -15,7 +15,7 @@ const retoSchema = mongoose.Schema({
     default: false
   },
   profesor: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.Number,
     ref: 'Profesor',
   },
   preguntas: [{

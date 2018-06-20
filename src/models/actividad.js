@@ -10,7 +10,7 @@ const actividadSchema = mongoose.Schema({
         type: String,
         required: [true, 'Título es obligatorio']
     }, profesor: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.Number,
         ref: 'Profesor',
     },
     integrantes: {
