@@ -9,6 +9,9 @@ const actividadSchema = mongoose.Schema({
     titulo: {
         type: String,
         required: [true, 'Título es obligatorio']
+    }, profesor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Profesor',
     },
     integrantes: {
         type: Number,

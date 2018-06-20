@@ -10,6 +10,14 @@ const retoSchema = mongoose.Schema({
     type: String,
     required: [true, 'Nombre es obligatorio']
   },
+  publicado: {
+    type: Boolean,
+    default: false
+  },
+  profesor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Profesor',
+  },
   preguntas: [{
     _id: false,
     pregunta: {
