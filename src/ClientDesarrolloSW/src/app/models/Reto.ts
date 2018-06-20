@@ -8,6 +8,8 @@ export class Reto {
     nombre: string;
     preguntas: Pregunta[];
     gradoporgrupo: string;
+    profesor: number;
+    publicado: boolean;
     materia: string;
     tema: string;
 }

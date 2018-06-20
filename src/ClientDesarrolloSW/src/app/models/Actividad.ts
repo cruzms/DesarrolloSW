@@ -8,6 +8,7 @@ export class Actividad {
     titulo: string;
     descripcion: string;
     fechaLimite: Date;
+    profesor: number;
     integrantes: number;
     logros: string;
     archivos: any;
