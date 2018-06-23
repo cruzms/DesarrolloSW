@@ -1,3 +1,5 @@
+
+
 process.env.NODE_ENV = 'test';
 
 let mongoose = require("mongoose");
@@ -39,15 +41,16 @@ de error
  */
 describe('/Post actividad', () => {
     let actividad = {
-        titulo: "Software",
         integrantes: 4,
+ 		archivos:[],
+		titulo: "Ejercicio integrales",
         descripcion: "Entregar",
-        objetivos: "No aprender",
-        fechaLimite: "5/05/2015",
-        grupo: "5b06f85754c7dc37b85c1665",
-        materia: "5b01d18dff8943373413287f",
-        tema: "5b06faa854c7dc37b85c1666",
-        archivos:[]
+        logros: "Trabajo en equipo",
+        fechaLimite: "5/05/2019",
+        gradoporgrupo: "5b074186e33fae3a50d579d7",
+        materia: "5b074186e33fae3a50d579f5",
+        tema: "5b074186e33fae3a50d579f2",
+        profesor:1053854
     }
     it('agregar actividad', (done) => {
         
@@ -57,22 +60,23 @@ describe('/Post actividad', () => {
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.a('object');
-                actividad._id=res.body._id;
+                actividad._id=res.body.object._id;
                 done();
             });
     });
     
     it('Actividad con campos vacios', (done) => {
         let actividad1 = {
-            titulo: " ",
             integrantes: 4,
-            descripcion: " ",
-            objetivos: "No aprender",
-            fechaLimite: "5/05/2015",
-            grupo: " ",
-            materia: "5b01d18dff8943373413287f",
-            tema: "5b06faa854c7dc37b85c1666",
-            archivos:[]
+            archivos:[],
+            titulo: "",
+            descripcion: "Entregar",
+            logros: "Trabajo en equipo",
+            fechaLimite: "5/05/2019",
+            gradoporgrupo: "5b074186e33fae3a50d579d7",
+            materia: "5b074186e33fae3a50d579f5",
+            tema: "5b074186e33fae3a50d579f2",
+            profesor:1053854
         }
         chai.request(server)
             .post('/api/actividades')
@@ -88,6 +92,9 @@ describe('/Post actividad', () => {
         });
     });
 });
+
+
+
 
 
 
