@@ -57,7 +57,7 @@ router.get('/', (req, res) => {
             ]
           }
         ],
-        "gradoporgrupo": "ID",
+        "gradosporgrupos": "ID",
         "materia": "ID",
         "tema": "ID"        
       }
@@ -73,7 +73,7 @@ router.post('/', (req, res) => {
   let nuevoReto = new Reto({
     nombre: req.body.nombre,
     preguntas: req.body.preguntas,
-    gradoporgrupo: req.body.gradoporgrupo,
+    gradosporgrupos: req.body.gradosporgrupos,
     materia: req.body.materia,
     tema: req.body.tema,
     profesor: req.body.profesor,

@@ -112,6 +112,7 @@ export class NuevaactividadComponent implements OnInit {
               timeOut: 5000,
               positionClass: 'toast-top-center'
             });
+            window.location.reload();
           });
         });
       } else {
@@ -132,6 +133,7 @@ export class NuevaactividadComponent implements OnInit {
             timeOut: 5000,
             positionClass: 'toast-top-center'
           });
+          window.location.reload();
         }, err => {
           this.toastr.error(err.error.message, '', {
             timeOut: 5000,

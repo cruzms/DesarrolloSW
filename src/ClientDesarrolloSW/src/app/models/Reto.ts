@@ -7,7 +7,7 @@ export class Reto {
     _id?: string;
     nombre: string;
     preguntas: Pregunta[];
-    gradoporgrupo: string;
+    gradosporgrupos: string[];
     profesor: number;
     publicado: boolean;
     materia: string;

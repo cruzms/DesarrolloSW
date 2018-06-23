@@ -1,2 +1,93 @@
 <h3 class="text-center display-4">Nuevo reto</h3>
 <br>
+<div class="row">
+  <div class="input-group mt-3 mb-3">
+    <div class="col-md-6 mt-3">
+      <input type="text" name="nombre" [(ngModel)]="nombre" placeholder="Nombre" class="form-control">
+    </div>
+    <div class="col-md-1">
+      <label for="grado">Grado</label>
+      <select class="form-control" [(ngModel)]="selectedGradoNombre" id="grado" (ngModelChange)="onGradoSelected()">
+        <option *ngFor="let grado of grados" [value]="grado.nombre">{{grado.nombre}}</option>
+      </select>
+    </div>
+    <div class="col-md-1">
+      <label for="grado">Grupo</label>
+      <select class="form-control" id="grupos">
+        <option *ngFor="let grupo of grupos" [value]="grupo.nombre">{{grupo.nombre}}</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label for="materia">Materia</label>
+      <select class="form-control" [(ngModel)]="selectedMateriaNombre" id="materia" (ngModelChange)="onMateriaSelected()">
+        <option *ngFor="let materia of materias" [value]="materia.nombre">{{materia.nombre}}</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label for="tema">Tema</label>
+      <select class="form-control" [(ngModel)]="selectedTemaNombre" id="tema" (ngModelChange)="onTemaSelected()">
+        <option *ngFor="let tema of temas" [value]="tema.nombre">{{tema.nombre}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="input-group mt-3 mb-3">
+    <div class="form-inline col mt-3">
+      <input type="text" name="pregunta" [(ngModel)]="pregunta" placeholder="Pregunta" class="form-control col-md-8">
+      <div class="input-group col-md-4">
+        <div class="custom-file">
+          <input class="custom-file-input" id="archivos" name="archivos" type="file" />
+          <label class="custom-file-label" for="archivos">Seleccione imagen</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col mt-3">
+    <div class="card">
+      <h5 class="card-header">Respuestas</h5>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="">
+              <input class="form-control mt-2" [(ngModel)]="esCorrecta" type="checkbox">
+            </td>
+            <td class="col-md-8">
+              <input type="text" name="respuesta" [(ngModel)]="respuesta" placeholder="Respuesta" class="form-control">
+            </td>
+            <td class="col-md-3">
+              <div class="input-group">
+                <div class="custom-file">
+                  <input class="custom-file-input" id="archivos" name="archivos" type="file" />
+                  <label class="custom-file-label" for="archivos">Seleccione imagen</label>
+                </div>
+              </div>
+            </td>
+            <td class="col-md-1">
+              <button type="button" class="btn btn-outline-success btn-lg" (click)="agregarRespuesta()">
+                Agregar respuesta
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td class="col-md-1">Correcta</td>
+            <td class="col-md-8">Respuesta</td>
+            <td class="col-md-3">Imagen</td>
+          </tr>
+          <tr class="mt-2" *ngFor="let respuesta of ListaRespuestas">
+            <td class="col-md-1 text-center bg-success" *ngIf="respuesta.esCorrecta">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </td>
+            <td class="col-md-1 text-center bg-danger" *ngIf="!respuesta.esCorrecta">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </td>
+            <td class="col-md-8">{{respuesta.respuesta}}</td>
+            <td class="col-md-3" *ngIf="respuesta.imagen[0]==undefined">Sin imagen</td>
+            <td class="col-md-3" *ngIf="respuesta.imagen[0]!=undefined">{{respuesta.imagen[0].name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <br>
+  </div>
+</div>

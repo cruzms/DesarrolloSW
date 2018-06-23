@@ -134,7 +134,7 @@ var data = [{
             }
             ]
         }],
-        "gradoporgrupo": "5b074186e33fae3a50d579d7",
+        "gradosporgrupos": ["5b074186e33fae3a50d579d7"],
         "materia": "5b074186e33fae3a50d579f6",
         "tema": "5b074186e33fae3a50d579f2"
     },
@@ -156,7 +156,7 @@ var data = [{
             }
             ]
         }],
-        "gradoporgrupo": "5b074186e33fae3a50d579d9",
+        "gradosporgrupos": ["5b074186e33fae3a50d579d9"],
         "materia": "5b074186e33fae3a50d579f5",
         "tema": "5b074186e33fae3a50d579f1"
     }

@@ -18,6 +18,7 @@ import { Actividad } from '../../models/Actividad';
 import { GradoporGrupo } from '../../models/GradoporGrupo';
 import { Materia } from '../../models/Materia';
 import { Tema } from '../../models/Tema';
+import { Reto } from '../../models/Reto';
 
 @Component({
   selector: 'app-nuevoreto',
@@ -26,17 +27,20 @@ import { Tema } from '../../models/Tema';
 })
 export class NuevoretoComponent implements OnInit {
   idProfesor = 1053854; // Debe existir este id
-  grupos: GradoporGrupo[];
+  ListaRespuestas: any[] = [];
+  grados: GradoporGrupo[];
   materias: Materia[];
   temas: Tema[];
-  selectedGrupoNombre = '';
+  selectedGradoNombre = '';
   selectedGrado: GradoporGrupo;
-  selectedMateriaNombre: '';
+  selectedMateriaNombre = '';
   selectedMateria: Materia;
-  selectedTemaNombre: '';
+  selectedTemaNombre = '';
   selectedTema: Tema;
   nombre: string;
   preguntas: any;
+  esCorrecta: boolean;
+  respuesta: string;
   inputEl: HTMLInputElement;
   constructor(private profesorService: ProfesorService, private actividadService: ActividadService,
     private temaService: TemaService, private archivoService: ArchivoService,
@@ -45,13 +49,46 @@ export class NuevoretoComponent implements OnInit {
     profesorService.getMateriasProfesor(this.idProfesor).subscribe(materias => {
       this.materias = materias;
     });
-    profesorService.getGruposProfesor(this.idProfesor).subscribe(grupos => {
-      this.grupos = grupos;
+    profesorService.getGruposProfesor(this.idProfesor).subscribe(grados => {
+      this.grados = grados;
     });
   }
 
   ngOnInit() {
-    // linea de archivos
+    this.inputEl = this.el.nativeElement.querySelectorAll('#archivos');
+  }
+
+  agregarRespuesta() {
+    if (this.ListaRespuestas.length < 5) {
+      const correct = this.ListaRespuestas.find(x => x.esCorrecta === true);
+
+      if ((correct === undefined) || (correct !== undefined && !this.esCorrecta)) {
+        const respuesta = this.ListaRespuestas.find(x => x.respuesta === this.respuesta);
+        if (respuesta === undefined) {
+          const imagenRespuesta = Object.assign({}, this.inputEl[1].files);
+          this.ListaRespuestas.push({
+            esCorrecta: this.esCorrecta,
+            respuesta: this.respuesta,
+            imagen: imagenRespuesta
+          });
+        } else {
+          this.toastr.info('Ya existe la misma respuesta.', '', {
+            timeOut: 5000,
+            positionClass: 'toast-top-center'
+          });
+        }
+      } else {
+        this.toastr.info('Ya existe una respuesta correcta.', '', {
+          timeOut: 5000,
+          positionClass: 'toast-top-center'
+        });
+      }
+    } else {
+      this.toastr.warning('Número de respuestas superadas.', '', {
+        timeOut: 5000,
+        positionClass: 'toast-top-center'
+      });
+    }
   }
 
   onMateriaSelected() {
@@ -60,7 +97,7 @@ export class NuevoretoComponent implements OnInit {
   }
 
   onGradoSelected() {
-    this.selectedGrado = this.grupos.find(grupo => grupo.nombre === this.selectedGrupoNombre);
+    this.selectedGrado = this.grados.find(grado => grado.nombre === this.selectedGradoNombre);
     this.getTemas();
   }
 
@@ -77,6 +114,13 @@ export class NuevoretoComponent implements OnInit {
   }
 
   publicarReto() {
+
+  }
+
+  guardarReto() {
+    console.log(this.ListaRespuestas);
+    console.log(this.selectedGrado.nombre, this.selectedMateria.nombre, this.selectedTema.nombre);
+
 
   }
 
