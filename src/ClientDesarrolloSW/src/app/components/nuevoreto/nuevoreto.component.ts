@@ -6,6 +6,7 @@
 
 import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { IMultiSelectOption, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 // Services
 import { ProfesorService } from '../../services/profesor.service';
 import { ActividadService } from '../../services/actividad.service';
@@ -26,6 +27,16 @@ import { Reto } from '../../models/Reto';
   styleUrls: ['./nuevoreto.component.css']
 })
 export class NuevoretoComponent implements OnInit {
+  myOptions: IMultiSelectOption[];
+  mySettings: IMultiSelectSettings = {
+    enableSearch: false,
+    checkedStyle: 'fontawesome',
+    buttonClasses: 'form-control select',
+    dynamicTitleMaxItems: 1,
+    displayAllSelectedText: true,
+    showUncheckAll: true
+  };
+  optionsModel: string[] = [];
   idProfesor = 1053854; // Debe existir este id
   ListaRespuestas: any[] = [];
   grados: GradoporGrupo[];
@@ -42,6 +53,7 @@ export class NuevoretoComponent implements OnInit {
   esCorrecta: boolean;
   respuesta: string;
   inputEl: HTMLInputElement;
+
   constructor(private profesorService: ProfesorService, private actividadService: ActividadService,
     private temaService: TemaService, private archivoService: ArchivoService,
     private validardatosService: ValidardatosService, private el: ElementRef,
@@ -51,6 +63,7 @@ export class NuevoretoComponent implements OnInit {
     });
     profesorService.getGruposProfesor(this.idProfesor).subscribe(grados => {
       this.grados = grados;
+      this.fillOptions();
     });
   }
 
@@ -97,8 +110,23 @@ export class NuevoretoComponent implements OnInit {
   }
 
   onGradoSelected() {
-    this.selectedGrado = this.grados.find(grado => grado.nombre === this.selectedGradoNombre);
-    this.getTemas();
+    if (this.optionsModel.length === 0) {
+      this.fillOptions();
+    } else {
+      this.myOptions = this.myOptions.filter(grado => grado.name.includes(this.optionsModel[0].split(' ')[0]));
+      this.selectedGrado = this.grados.find(grado => grado.nombre === this.optionsModel[0]);
+      this.getTemas();
+    }
+  }
+
+  fillOptions() {
+    this.myOptions = [];
+    this.grados.forEach(grad => {
+      this.myOptions.push({
+        id: grad.nombre,
+        name: grad.nombre
+      });
+    });
   }
 
   onTemaSelected() {

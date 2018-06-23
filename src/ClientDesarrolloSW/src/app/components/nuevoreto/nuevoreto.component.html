@@ -5,17 +5,9 @@
     <div class="col-md-6 mt-3">
       <input type="text" name="nombre" [(ngModel)]="nombre" placeholder="Nombre" class="form-control">
     </div>
-    <div class="col-md-1">
-      <label for="grado">Grado</label>
-      <select class="form-control" [(ngModel)]="selectedGradoNombre" id="grado" (ngModelChange)="onGradoSelected()">
-        <option *ngFor="let grado of grados" [value]="grado.nombre">{{grado.nombre}}</option>
-      </select>
-    </div>
-    <div class="col-md-1">
-      <label for="grado">Grupo</label>
-      <select class="form-control" id="grupos">
-        <option *ngFor="let grupo of grupos" [value]="grupo.nombre">{{grupo.nombre}}</option>
-      </select>
+    <div class="col-md-2">
+      <label for="grado">Grado</label><br>
+      <ss-multiselect-dropdown [options]="myOptions" [settings]="mySettings" [(ngModel)]="optionsModel" (ngModelChange)="onGradoSelected()"></ss-multiselect-dropdown>
     </div>
     <div class="col-md-2">
       <label for="materia">Materia</label>

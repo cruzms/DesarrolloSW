@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { ToastrModule } from 'ngx-toastr';
 
 // Componentes
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
+    MultiselectDropdownModule,
     ToastrModule.forRoot()
   ],
   providers: [
