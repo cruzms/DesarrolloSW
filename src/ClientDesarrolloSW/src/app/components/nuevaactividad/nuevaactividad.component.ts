@@ -109,7 +109,7 @@ export class NuevaactividadComponent implements OnInit {
           this.actividadService.addActividad(newActividad).subscribe(actividad => {
             this.toastr.success('Actividad agregada', '', {
               timeOut: 5000,
-              positionClass: 'toast-top-center'
+              positionClass: 'toast-top-right'
             });
             window.location.reload();
           });
@@ -130,20 +130,20 @@ export class NuevaactividadComponent implements OnInit {
         this.actividadService.addActividad(newActividad).subscribe(actividad => {
           this.toastr.success('Actividad agregada', '', {
             timeOut: 5000,
-            positionClass: 'toast-top-center'
+            positionClass: 'toast-top-right'
           });
           window.location.reload();
         }, err => {
           this.toastr.error(err.error.message, '', {
             timeOut: 5000,
-            positionClass: 'toast-top-center'
+            positionClass: 'toast-top-right'
           });
         });
       }
     } else {
       this.toastr.error(validation.message, 'Error', {
         timeOut: 5000,
-        positionClass: 'toast-top-center'
+        positionClass: 'toast-top-right'
       });
     }
   }

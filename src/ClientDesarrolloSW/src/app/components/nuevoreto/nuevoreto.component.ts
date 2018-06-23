@@ -71,6 +71,10 @@ export class NuevoretoComponent implements OnInit {
     this.inputEl = this.el.nativeElement.querySelectorAll('#archivos');
   }
 
+ /**
+ * Método encargado de adicionar las respuestas y validarlas
+ * @returns Mensaje mensaje indicando si existe algún error en la respuesta
+ */
   agregarRespuesta() {
     if (this.ListaRespuestas.length < 5) {
       const correct = this.ListaRespuestas.find(x => x.esCorrecta === true);
@@ -92,26 +96,26 @@ export class NuevoretoComponent implements OnInit {
           } else {
             this.toastr.info('Solo se permiten cargar imágenes.', '', {
               timeOut: 5000,
-              positionClass: 'toast-top-center'
+              positionClass: 'toast-top-right'
             });
           }
 
         } else {
           this.toastr.info('Ya existe la misma respuesta o es vacía.', '', {
             timeOut: 5000,
-            positionClass: 'toast-top-center'
+            positionClass: 'toast-top-right'
           });
         }
       } else {
         this.toastr.info('Ya existe una respuesta correcta.', '', {
           timeOut: 5000,
-          positionClass: 'toast-top-center'
+          positionClass: 'toast-top-right'
         });
       }
     } else {
       this.toastr.warning('Número de respuestas superadas.', '', {
         timeOut: 5000,
-        positionClass: 'toast-top-center'
+        positionClass: 'toast-top-right'
       });
     }
   }
@@ -161,13 +165,18 @@ export class NuevoretoComponent implements OnInit {
   publicarReto() {
   }
 
+  /**
+ * Método que se encarga de subir las imágener al servidor
+ * y hacer el post del reto ya validado
+ * @returns Mensaje mensaje indicando si ocurrió algún error
+ */
   guardarReto() {
     const validation = this.validardatosService.ValidarReto(this.nombre, this.pregunta,
       this.selectedGrado, this.selectedMateria, this.selectedTema, this.ListaRespuestas.length);
     if (this.ListaRespuestas.find(x => x.esCorrecta === true) === undefined) {
       this.toastr.info('Se debe escoger una respuesta correcta', '', {
         timeOut: 5000,
-        positionClass: 'toast-top-center'
+        positionClass: 'toast-top-right'
       });
       return;
     }
@@ -178,7 +187,7 @@ export class NuevoretoComponent implements OnInit {
         if (!acceptImage.includes(this.inputEl[0].files[0].name.split('.')[this.inputEl[0].files[0].name.split('.').length - 1])) {
           this.toastr.info('Solo se permite archivos de imagen en la pregunta', '', {
             timeOut: 5000,
-            positionClass: 'toast-top-center'
+            positionClass: 'toast-top-right'
           });
           return;
         }
@@ -231,20 +240,20 @@ export class NuevoretoComponent implements OnInit {
         this.retoService.addReto(nuevoReto).subscribe(reto => {
           this.toastr.success('Reto guardado', '', {
             timeOut: 5000,
-            positionClass: 'toast-top-center'
+            positionClass: 'toast-top-right'
           });
           window.location.reload();
         }, err => {
           this.toastr.error(err.error.message, '', {
             timeOut: 5000,
-            positionClass: 'toast-top-center'
+            positionClass: 'toast-top-right'
           });
         });
       });
     } else {
       this.toastr.error(validation.message, 'Error', {
         timeOut: 5000,
-        positionClass: 'toast-top-center'
+        positionClass: 'toast-top-right'
       });
     }
   }
