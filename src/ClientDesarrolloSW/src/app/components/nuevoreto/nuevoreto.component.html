@@ -6,7 +6,8 @@
       <input type="text" name="nombre" [(ngModel)]="nombre" placeholder="Nombre" class="form-control">
     </div>
     <div class="col-md-2">
-      <label for="grado">Grado</label><br>
+      <label for="grado">Grado</label>
+      <br>
       <ss-multiselect-dropdown [options]="myOptions" [settings]="mySettings" [(ngModel)]="optionsModel" (ngModelChange)="onGradoSelected()"></ss-multiselect-dropdown>
     </div>
     <div class="col-md-2">
@@ -61,23 +62,44 @@
             </td>
           </tr>
           <tr>
-            <td class="col-md-1">Correcta</td>
-            <td class="col-md-8">Respuesta</td>
-            <td class="col-md-3">Imagen</td>
+            <td class="col-md-1 font-weight-bold">Correcta</td>
+            <td class="col-md-7 font-weight-bold">Respuesta</td>
+            <td class="col-md-3 font-weight-bold">Imagen</td>
+            <td class="col-md-1 font-weight-bold">Eliminar</td>
           </tr>
           <tr class="mt-2" *ngFor="let respuesta of ListaRespuestas">
             <td class="col-md-1 text-center bg-success" *ngIf="respuesta.esCorrecta">
-              <i class="fa fa-check" aria-hidden="true"></i>
+                <button class="btn btn-success" disabled>
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                  </button>
             </td>
             <td class="col-md-1 text-center bg-danger" *ngIf="!respuesta.esCorrecta">
-              <i class="fa fa-times" aria-hidden="true"></i>
+              <button class="btn btn-danger" disabled>
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
             </td>
-            <td class="col-md-8">{{respuesta.respuesta}}</td>
+
+            <td class="col-md-7">{{respuesta.respuesta}}</td>
             <td class="col-md-3" *ngIf="respuesta.imagen[0]==undefined">Sin imagen</td>
             <td class="col-md-3" *ngIf="respuesta.imagen[0]!=undefined">{{respuesta.imagen[0].name}}</td>
+            <td class="col-md-1">
+              <button class="btn btn-danger btn-sm" (click)="eliminarRespuesta(respuesta.respuesta)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="col-md-12 mt-3 text-center">
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-primary btn-lg" (click)="guardarReto()">
+        Guardar Reto
+      </button>
+      <button type="button" class="btn btn-outline-success btn-lg" disabled (click)="publicarReto()">
+        Publicar Reto
+      </button>
     </div>
     <br>
     <br>

@@ -18,7 +18,7 @@ export class ValidardatosService {
   * @returns Mensaje validación
   */
   ValidarActividad(titulo, descripcion, fechaLimite, integrantes, grupo, materia, tema) {
-    if (titulo == null || descripcion === '') {
+    if (titulo == null || titulo === '') {
       return { ok: false, message: 'El título es obligatorio' };
     }
     if (descripcion == null || descripcion === '') {
@@ -44,6 +44,33 @@ export class ValidardatosService {
     }
     if (tema == null) {
       return { ok: false, message: 'Seleccione un tema' };
+    }
+    return { ok: true, message: 'ok' };
+  }
+
+  /**
+  * Método encargado de validar un reto
+  * @param {Reto} reto - reto que se agregará al servidor
+  * @returns Mensaje validación
+  */
+  ValidarReto(nombre, pregunta, grado, materia, tema, numrespuestas) {
+    if (nombre == null || nombre === '') {
+      return { ok: false, message: 'El nombre del reto es obligatorio' };
+    }
+    if (pregunta == null || pregunta === '') {
+      return { ok: false, message: 'La pregunta del reto es obligatoria' };
+    }
+    if (grado == null) {
+      return { ok: false, message: 'Seleccione los grados' };
+    }
+    if (materia == null) {
+      return { ok: false, message: 'Seleccione una materia' };
+    }
+    if (tema == null) {
+      return { ok: false, message: 'Seleccione un tema' };
+    }
+    if (numrespuestas < 3) {
+      return { ok: false, message: 'El número mínimo de respuestas es 3' };
     }
     return { ok: true, message: 'ok' };
   }

@@ -92,7 +92,6 @@ export class NuevaactividadComponent implements OnInit {
         this.archivoService.SubirArchivo(formData).subscribe(files => {
           const file = [];
           files.forEach(element => {
-            console.log(element);
             file.push({ file: element.filename, nombreOriginal: element.originalname });
           });
           const newActividad = {

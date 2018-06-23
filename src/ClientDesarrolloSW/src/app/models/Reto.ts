@@ -17,7 +17,7 @@ export class Reto {
 class Pregunta {
     pregunta: string;
     imagen: string;
-    respuesta: Respuesta[];
+    respuestas: Respuesta[];
 }
 
 class Respuesta {

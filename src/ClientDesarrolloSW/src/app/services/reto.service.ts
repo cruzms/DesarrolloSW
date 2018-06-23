@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 import { Reto } from '../models/Reto';
 import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/map';
+// tslint:disable-next-line:import-blacklist
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class RetoService {
@@ -22,7 +24,8 @@ export class RetoService {
  * @returns Reto adicionado
  */
   addReto(nuevoReto: Reto) {
-    return this.http.post<Reto>(`${this.domain}/api/retos`, nuevoReto)
-      .map(res => res);
+    return this.http.post(`${this.domain}/api/retos`, nuevoReto)
+      .map((res: Response) => res)
+      .catch((err: Response) => Observable.throw(err));
   }
 }
