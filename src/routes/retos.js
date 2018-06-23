@@ -93,11 +93,10 @@ router.post('/', (req, res) => {
   });
 });
 
-
 /**
- * @api {Delete} /api/retos/id Elmininar actividades
+ * @api {Delete} /api/retos/id Elmininar reto
  * @apiName DeleteRetos
- * @apiGroup Retos
+ * @apiGroup Reto
  * 
  * @apiSuccess (200) {StatusCode} statuscode Código HTTP
  * @apiSuccess (200) {Json} Mensaje de eliminacion

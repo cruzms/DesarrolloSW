@@ -1,5 +1,55 @@
 [
   {
+    "type": "Delete",
+    "url": "/api/actividades/id",
+    "title": "Elmininar actividades",
+    "name": "DeleteActividades",
+    "group": "Actividad",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "200",
+            "type": "Json",
+            "optional": false,
+            "field": "Mensaje",
+            "description": "<p>de eliminado</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "400",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Si ocurre un error en la solicitud</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/actividades.js",
+    "groupTitle": "Actividad"
+  },
+  {
     "type": "GET",
     "url": "/api/actividades",
     "title": "Obtener todas las actividades",
@@ -140,7 +190,7 @@
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    \"titulo\":\"Español\",\n    \"integrantes\": 1,\n    \"descripcion\": \"Texto\",\n    \"objetivos\": \"Texto\",\n    \"fechaLimite\": \"01/4/2016\",\n    \"grupo\": \"ID grupo\",\n    \"materia\": \"ID materia\",\n    \"tema\": \"ID tema\",\n    \"archivos\": [\"ID 1\", \"ID 1\"]\n}",
+          "content": "{\n    \"titulo\":\"Español\",\n    \"integrantes\": 1,\n    \"descripcion\": \"Texto\",\n    \"objetivos\": \"Texto\",\n    \"fechaLimite\": \"01/4/2016\",\n    \"gradoporgrupo\": \"ID grupo\",\n    \"materia\": \"ID materia\",\n    \"tema\": \"ID tema\",\n    \"archivos\": [\"ID 1\", \"ID 1\"]\n}",
           "type": "Actividad"
         }
       ]
@@ -494,15 +544,15 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "idGrupo",
-            "description": "<p>El id del grupo a asignar</p>"
+            "field": "idGradoporGrupo",
+            "description": "<p>El id del gradoporgrupo a asignar</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    \"idEstudiante\": \"\",\n    \"idGrupo\": \"\"\n}",
+          "content": "{\n    \"idEstudiante\": \"\",\n    \"idGradoporGrupo\": \"\"\n}",
           "type": "Object"
         }
       ]
@@ -522,7 +572,7 @@
             "type": "Json",
             "optional": false,
             "field": "message",
-            "description": "<p>Mensaje indicando que se asignó el grupo</p>"
+            "description": "<p>Mensaje indicando que se asignó el gradoporgrupo</p>"
           }
         ]
       }
@@ -572,14 +622,14 @@
             "type": "String",
             "optional": false,
             "field": "idGrupo",
-            "description": "<p>El id del grupo a asignar</p>"
+            "description": "<p>El id del gradoporgrupo a asignar</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    \"idProfesor\": 1053,\n    \"idGrupo\": \"\"\n}",
+          "content": "{\n    \"idProfesor\": 1053,\n    \"idGradoporGrupo\": \"\"\n}",
           "type": "Object"
         }
       ]
@@ -1051,6 +1101,357 @@
   },
   {
     "type": "GET",
+    "url": "/api/grados/:id",
+    "title": "Obtener un grado con un id proporcionado",
+    "name": "GetGradoID",
+    "group": "Grado",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id del grado</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "200",
+            "type": "Grado",
+            "optional": false,
+            "field": "grado",
+            "description": "<p>Grado buscado</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "400",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Si no se encuentra el grado con el id solicitado</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/grados.js",
+    "groupTitle": "Grado"
+  },
+  {
+    "type": "POST",
+    "url": "/api/grados",
+    "title": "Agregar un grado a la base de datos",
+    "name": "PostGrado",
+    "group": "Grado",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Grado",
+            "optional": false,
+            "field": "Grado",
+            "description": "<p>El grado que se va a agregar al sistema</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Grado.nombre",
+            "description": "<p>El nombre del grado</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"nombre\": \"Sexto\"\n}",
+          "type": "Grado"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "200",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Mensaje indicando que se agregó el grado</p>"
+          },
+          {
+            "group": "200",
+            "type": "Json",
+            "optional": false,
+            "field": "object",
+            "description": "<p>Grado agregado</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "400",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Mensaje indicando el error en la solicitud</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/grados.js",
+    "groupTitle": "Grado"
+  },
+  {
+    "type": "GET",
+    "url": "/api/gradosporgrupos",
+    "title": "Obtener todos los gradosporgrupos",
+    "name": "GetGradosporGrupo",
+    "group": "GradoporGrupo",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "200",
+            "type": "gradosporgrupo[]",
+            "optional": false,
+            "field": "gradosporgrupo",
+            "description": "<p>Lista de gradosporgrupos</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "400",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Si ocurre un error en la solicitud</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/gradosporgrupos.js",
+    "groupTitle": "GradoporGrupo"
+  },
+  {
+    "type": "GET",
+    "url": "/api/gradosporgrupos/:id",
+    "title": "Obtener un gradoporgrupo con un id proporcionado",
+    "name": "GetGradosporGrupoID",
+    "group": "GradoporGrupo",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id del gradoporgrupo</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "200",
+            "type": "GradoporGrupo",
+            "optional": false,
+            "field": "gradoporgrupo",
+            "description": "<p>GradoporGrupo buscada</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "400",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Si no se encuentra el gradoporgrupo con el id solicitado</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/gradosporgrupos.js",
+    "groupTitle": "GradoporGrupo"
+  },
+  {
+    "type": "POST",
+    "url": "/api/gradosporgrupos",
+    "title": "Agregar un gradoporgrupo a la base de datos",
+    "name": "PostGradoporGrupo",
+    "group": "GradoporGrupo",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "GradoporGrupo",
+            "optional": false,
+            "field": "GradoporGrupo",
+            "description": "<p>El gradoporgrupo que se va a agregar al sistema</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "GradoporGrupo.grado",
+            "description": "<p>El grado que conformará el gradoporgrupo</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "GradoporGrupo.grupo",
+            "description": "<p>El grupo que conformará el gradoporgrupo</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"grado\": \"5b074186e33fae3a50d579f3\",\n    \"grupo\": \"5b074186e33fae3a50d579d6\"\n}",
+          "type": "GradoporGrupo"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "200",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Mensaje indicando que se agregó el gradoporgrupo</p>"
+          },
+          {
+            "group": "200",
+            "type": "Json",
+            "optional": false,
+            "field": "object",
+            "description": "<p>GradoporGrupo agregado</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "400",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Mensaje indicando el error en la solicitud</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/gradosporgrupos.js",
+    "groupTitle": "GradoporGrupo"
+  },
+  {
+    "type": "GET",
     "url": "/api/grupos/:id",
     "title": "Obtener un grupo con un id proporcionado",
     "name": "GetGrupoID",
@@ -1140,7 +1541,7 @@
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    \"nombre\": \"Octavo A\"\n}",
+          "content": "{\n    \"nombre\": \"B\"\n}",
           "type": "Grupo"
         }
       ]
@@ -1469,6 +1870,56 @@
     "version": "0.0.0",
     "filename": "src/routes/materias.js",
     "groupTitle": "Materia"
+  },
+  {
+    "type": "Delete",
+    "url": "/api/profesores/id",
+    "title": "Elmininar profesores",
+    "name": "DeleteProfesor",
+    "group": "Profesor",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "200",
+            "type": "Json",
+            "optional": false,
+            "field": "Mensaje",
+            "description": "<p>de eliminado</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "400",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Si ocurre un error en la solicitud</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/profesores.js",
+    "groupTitle": "Profesor"
   },
   {
     "type": "GET",
@@ -1871,6 +2322,190 @@
     "groupTitle": "Profesor"
   },
   {
+    "type": "Delete",
+    "url": "/api/retos/id",
+    "title": "Elmininar reto",
+    "name": "DeleteRetos",
+    "group": "Reto",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "200",
+            "type": "Json",
+            "optional": false,
+            "field": "Mensaje",
+            "description": "<p>de eliminacion</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "400",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Si ocurre un error en la solicitud</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/retos.js",
+    "groupTitle": "Reto"
+  },
+  {
+    "type": "GET",
+    "url": "/api/retos",
+    "title": "Obtener todas los retos",
+    "name": "GetReto",
+    "group": "Reto",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "200",
+            "type": "retos[]",
+            "optional": false,
+            "field": "retos",
+            "description": "<p>Lista de retos</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "400",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Si ocurre un error en la solicitud</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/retos.js",
+    "groupTitle": "Reto"
+  },
+  {
+    "type": "POST",
+    "url": "/api/retos",
+    "title": "Agregar un reto a la base de datos",
+    "name": "PostReto",
+    "group": "Reto",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Reto",
+            "optional": false,
+            "field": "Reto",
+            "description": "<p>La reto que se va a agregar al sistema</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Reto.nombre",
+            "description": "<p>El nombre del reto</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "\n{\n  \"nombre\": \"Quiz Nro 1\",\n  \"preguntas\": [\n    {\n      \"pregunta\":\"Pregunta?\",\n      \"imagen\":\"ID\",\n      \"respuestas\":[\n        {\n          \"texto\":\"respuesta 1\",\n          \"correcta\": false,\n          \"imagen\":\"\"\n        },\n        {\n          \"texto\":\"respuesta 2\",\n          \"correcta\": true,\n          \"imagen\":\"\"\n        }\n      ]\n    }\n  ],\n  \"gradosporgrupos\": \"ID\",\n  \"materia\": \"ID\",\n  \"tema\": \"ID\"        \n}",
+          "type": "Reto"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "200",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Mensaje indicando que se agregó el reto</p>"
+          },
+          {
+            "group": "200",
+            "type": "Json",
+            "optional": false,
+            "field": "object",
+            "description": "<p>Reto agregado</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "400",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Mensaje indicando el error en la solicitud</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/retos.js",
+    "groupTitle": "Reto"
+  },
+  {
     "type": "GET",
     "url": "/api/temas/:id",
     "title": "Obtener un tema con un id proporcionado",
@@ -1925,6 +2560,76 @@
             "optional": false,
             "field": "message",
             "description": "<p>Si no se encuentra el tema con el id solicitado</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/temas.js",
+    "groupTitle": "Tema"
+  },
+  {
+    "type": "GET",
+    "url": "/api/temas/:materia/:grado",
+    "title": "Obtener los temas de un grado y una materia",
+    "name": "GetTemas",
+    "group": "Tema",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "materia",
+            "description": "<p>Id de la materia</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "grado",
+            "description": "<p>Id del grupo</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "200",
+            "type": "Tema[]",
+            "optional": false,
+            "field": "temas",
+            "description": "<p>Lista de temas</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "400",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Si no se encuentran temas</p>"
           }
         ]
       }
