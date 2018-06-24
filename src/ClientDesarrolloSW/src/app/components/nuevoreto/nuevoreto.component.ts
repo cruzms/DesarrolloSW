@@ -71,16 +71,16 @@ export class NuevoretoComponent implements OnInit {
     this.inputEl = this.el.nativeElement.querySelectorAll('#archivos');
   }
 
- /**
- * Método encargado de adicionar las respuestas y validarlas
- * @returns Mensaje mensaje indicando si existe algún error en la respuesta
- */
+  /**
+  * Método encargado de adicionar las respuestas y validarlas
+  * @returns Mensaje mensaje indicando si existe algún error en la respuesta
+  */
   agregarRespuesta() {
     if (this.ListaRespuestas.length < 5) {
       const correct = this.ListaRespuestas.find(x => x.esCorrecta === true);
       if ((correct === undefined) || (correct !== undefined && !this.esCorrecta)) {
         const respuesta = this.ListaRespuestas.find(x => x.respuesta === this.respuesta);
-        if (respuesta === undefined && (this.respuesta !== undefined || this.respuesta === '')) {
+        if (respuesta === undefined && (this.respuesta !== undefined && this.respuesta !== '')) {
           const imagenRespuesta = Object.assign({}, this.inputEl[1].files);
           const acceptImage = ['jpeg', 'png', 'jpg'];
           if (imagenRespuesta[0] === undefined || acceptImage.includes(
@@ -99,7 +99,6 @@ export class NuevoretoComponent implements OnInit {
               positionClass: 'toast-top-right'
             });
           }
-
         } else {
           this.toastr.info('Ya existe la misma respuesta o es vacía.', '', {
             timeOut: 5000,
