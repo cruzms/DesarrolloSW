@@ -25,13 +25,14 @@
   </div>
   <div class="input-group mt-3 mb-3">
     <div class="form-inline col mt-3">
-      <input type="text" name="pregunta" [(ngModel)]="pregunta" placeholder="Pregunta" class="form-control col-md-8">
-      <div class="input-group col-md-4">
+      <input type="text" name="pregunta" [(ngModel)]="pregunta" placeholder="Pregunta" class="form-control col-md-7">
+      <div class="input-group col-md-3">
         <div class="custom-file">
-          <input class="custom-file-input" id="archivos" name="archivos" type="file" />
+          <input class="custom-file-input" id="archivos" name="archivos" type="file" appCustomOnChange/>
           <label class="custom-file-label" for="archivos">Seleccione imagen</label>
         </div>
       </div>
+      <div class="col-md-2 mt-1" *ngIf="inputEl[0].files[0]!=undefined">Nombre: {{inputEl[0].files[0].name.toLowerCase()}}</div>
     </div>
   </div>
 

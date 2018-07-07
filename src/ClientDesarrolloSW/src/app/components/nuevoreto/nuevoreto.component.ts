@@ -31,8 +31,8 @@ export class NuevoretoComponent implements OnInit {
     enableSearch: false,
     checkedStyle: 'fontawesome',
     buttonClasses: 'form-control select',
-    dynamicTitleMaxItems: 1,
-    displayAllSelectedText: true,
+    dynamicTitleMaxItems: 2,
+    displayAllSelectedText: false,
     showUncheckAll: true
   };
   optionsModel: string[] = [];
@@ -84,7 +84,7 @@ export class NuevoretoComponent implements OnInit {
           const imagenRespuesta = Object.assign({}, this.inputEl[1].files);
           const acceptImage = ['jpeg', 'png', 'jpg'];
           if (imagenRespuesta[0] === undefined || acceptImage.includes(
-            imagenRespuesta[0].name.split('.')[imagenRespuesta[0].name.split('.').length - 1])) {
+            imagenRespuesta[0].name.toLowerCase().split('.')[imagenRespuesta[0].name.split('.').length - 1])) {
             this.ListaRespuestas.push({
               esCorrecta: this.esCorrecta,
               respuesta: this.respuesta,
@@ -183,7 +183,8 @@ export class NuevoretoComponent implements OnInit {
       const formData = new FormData();
       if (this.inputEl[0].files[0] !== undefined) {
         const acceptImage = ['jpeg', 'png', 'jpg'];
-        if (!acceptImage.includes(this.inputEl[0].files[0].name.split('.')[this.inputEl[0].files[0].name.split('.').length - 1])) {
+        if (!acceptImage.includes(this.inputEl[0].files[0].name
+          .toLowerCase().split('.')[this.inputEl[0].files[0].name.split('.').length - 1])) {
           this.toastr.info('Solo se permite archivos de imagen en la pregunta', '', {
             timeOut: 5000,
             positionClass: 'toast-top-right'
