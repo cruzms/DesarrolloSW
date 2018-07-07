@@ -10,8 +10,8 @@ export class Reto {
     gradosporgrupos: string[];
     profesor: number;
     publicado: boolean;
-    materia: string;
-    tema: string;
+    materia: any;
+    tema: any;
 }
 
 class Pregunta {

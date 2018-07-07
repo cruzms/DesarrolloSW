@@ -28,4 +28,15 @@ export class RetoService {
       .map((res: Response) => res)
       .catch((err: Response) => Observable.throw(err));
   }
+
+  /**
+ * Método encargado de consultar los retos correspondientes a un gradoporgrupo
+ * @param {String} gradoporgrupo - gradoporgrupo para buscar los retos
+ * @returns Lista de retos
+ */
+  getRetosEstudiante(gradoporgrupo: String) {
+    return this.http.get(`${this.domain}/api/retos/consultarRetosEstudiante/${gradoporgrupo}`)
+      .map((res: Response) => res)
+      .catch((err: Response) => Observable.throw(err));
+  }
 }

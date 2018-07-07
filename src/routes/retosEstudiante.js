@@ -22,14 +22,15 @@ const Reto = require('../models/reto');
  */
 router.get('/:gradoporgrupo', (req, res) => {
     Reto.find({
-        gradosporgrupos: {
-            "$in": [req.params.gradoporgrupo]
-        }
-    }, (err, retos) => {
-        if (err) return res.status(400).json({
-            message: err
+            gradosporgrupos: {
+                "$in": [req.params.gradoporgrupo]
+            }
+        }).populate('materia').populate('tema')
+        .exec((err, retos) => {
+            if (err) return res.status(400).json({
+                message: err
+            });
+            res.status(200).json(retos);
         });
-        res.status(200).json(retos);
-    });
 });
 module.exports = router;

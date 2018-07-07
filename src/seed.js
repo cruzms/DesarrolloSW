@@ -53,6 +53,12 @@ var data = [{
         nombre: "Divisiones",
         materia: "5b074186e33fae3a50d579f5",
         grado: "5b074186e33fae3a50d579f4"
+    },
+    {
+        _id: "5b1080a61b2c743357abe443",
+        nombre: "Tildes",
+        materia: "5b074186e33fae3a50d579f6",
+        grado: "5b074186e33fae3a50d579f4"
     }
     ]
 },
@@ -136,7 +142,7 @@ var data = [{
         }],
         "gradosporgrupos": ["5b074186e33fae3a50d579d7"],
         "materia": "5b074186e33fae3a50d579f6",
-        "tema": "5b074186e33fae3a50d579f2"
+        "tema": "5b1080a61b2c743357abe443"
     },
     {
         _id: "5b074186e33fae3a50d579a2",
@@ -168,7 +174,7 @@ var data = [{
         _id: "1053854",
         nombre: "David",
         apellido: "Ospina",
-        materias: ["5b074186e33fae3a50d579f5"],
+        materias: ["5b074186e33fae3a50d579f5","5b074186e33fae3a50d579f6"],
         gradosporgrupos: ["5b074186e33fae3a50d579d7", "5b074186e33fae3a50d579d8", "5b074186e33fae3a50d579d9"]
     },
     {

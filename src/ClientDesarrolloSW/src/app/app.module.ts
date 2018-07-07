@@ -25,12 +25,14 @@ import { ConsultarmateriasComponent } from './components/consultarmaterias/consu
 import { ActividadesestudianteComponent } from './components/actividadesestudiante/actividadesestudiante.component';
 import { CustomOnChangeDirective } from './directives/custom-on-change.directive';
 import { NuevoretoComponent } from './components/nuevoreto/nuevoreto.component';
+import { ConsultarretosComponent } from './components/consultarretos/consultarretos.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'nuevaActividad', component: NuevaactividadComponent },
   { path: 'nuevoReto', component: NuevoretoComponent },
   { path: 'materiasEstudiante', component: ConsultarmateriasComponent },
+  { path: 'retosEstudiante', component: ConsultarretosComponent },
   { path: 'ActividadesEstudiante', component: ActividadesestudianteComponent }
 ];
 
@@ -42,7 +44,8 @@ const appRoutes: Routes = [
     ConsultarmateriasComponent,
     ActividadesestudianteComponent,
     CustomOnChangeDirective,
-    NuevoretoComponent
+    NuevoretoComponent,
+    ConsultarretosComponent
   ],
   imports: [
     BrowserModule,

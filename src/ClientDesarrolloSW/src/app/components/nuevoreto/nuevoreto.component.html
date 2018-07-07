@@ -36,9 +36,6 @@
     </div>
   </div>
 
-
-
-
   <div class="col">
     <div class="card">
       <h5 class="card-header">Respuestas</h5>
@@ -69,15 +66,15 @@
         <div class="col-md-3 font-weight-bold">Imagen</div>
         <div class="col-md-1 font-weight-bold">Eliminar</div>
         <div class="input-group mt-1" *ngFor="let respuesta of ListaRespuestas">
-          <div class="col-md-1 text-center bg-success" *ngIf="respuesta.esCorrecta">
-            <button class="btn btn-success" disabled>
+          <div class="col-md-1 text-center" *ngIf="respuesta.esCorrecta">
+            <div disabled>
               <i class="fa fa-check" aria-hidden="true"></i>
-            </button>
+            </div>
           </div>
-          <div class="col-md-1 text-center bg-danger" *ngIf="!respuesta.esCorrecta">
-            <button class="btn btn-danger" disabled>
+          <div class="col-md-1 text-center" *ngIf="!respuesta.esCorrecta">
+            <div disabled>
               <i class="fa fa-times" aria-hidden="true"></i>
-            </button>
+            </div>
           </div>
 
           <div class="col-md-7 mt-1">{{respuesta.respuesta}}</div>
