@@ -6,6 +6,9 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const Reto = require('../models/reto');
+const retosEstudiante = require('./retosEstudiante');
+
+router.use('/consultarRetosEstudiante', retosEstudiante);
 
 /**
  * @api {GET} /api/retos Obtener todas los retos
