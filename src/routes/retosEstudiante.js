@@ -24,7 +24,9 @@ router.get('/:gradoporgrupo', (req, res) => {
     Reto.find({
             gradosporgrupos: {
                 "$in": [req.params.gradoporgrupo]
-            }
+            },
+            publicado : true
+            
         }).populate('materia').populate('tema')
         .exec((err, retos) => {
             if (err) return res.status(400).json({

@@ -147,7 +147,8 @@ var data = [{
                 }],
                 "gradosporgrupos": ["5b074186e33fae3a50d579d7"],
                 "materia": "5b074186e33fae3a50d579f6",
-                "tema": "5b1080a61b2c743357abe443"
+                "tema": "5b1080a61b2c743357abe443",
+                "publicado": true
             }, {
                 _id: "5b074186e33fae3a50d579a2",
                 "nombre": "Quiz divisiones",
@@ -173,7 +174,64 @@ var data = [{
                 }],
                 "gradosporgrupos": ["5b074186e33fae3a50d579d7"],
                 "materia": "5b074186e33fae3a50d579f5",
-                "tema": "5b1080a61b2c743357abe442"
+                "tema": "5b1080a61b2c743357abe442",
+                "publicado": true
+            },
+            {
+                _id: "5b074186e33fae3a50d579a4",
+                "nombre": "Quiz Multiplicaciones",
+                "preguntas": [{
+                    "pregunta": "Pregunta?",
+                    "imagen": "ID",
+                    "respuestas": [{
+                            "texto": "respuesta 1",
+                            "correcta": true,
+                            "imagen": ""
+                        },
+                        {
+                            "texto": "respuesta 2",
+                            "correcta": false,
+                            "imagen": ""
+                        },
+                        {
+                            "texto": "respuesta 3",
+                            "correcta": false,
+                            "imagen": ""
+                        }
+                    ]
+                }],
+                "gradosporgrupos": ["5b074186e33fae3a50d579d7"],
+                "materia": "5b074186e33fae3a50d579f5",
+                "tema": "5b1080a61b2c743357abe441",
+                "publicado": true
+            },
+            {
+                _id: "5b074186e33fae3a50d579a5",
+                "nombre": "Suma maestra",
+                "preguntas": [{
+                    "pregunta": "Pregunta?",
+                    "imagen": "ID",
+                    "respuestas": [{
+                            "texto": "respuesta 1",
+                            "correcta": true,
+                            "imagen": ""
+                        },
+                        {
+                            "texto": "respuesta 2",
+                            "correcta": false,
+                            "imagen": ""
+                        },
+                        {
+                            "texto": "respuesta 3",
+                            "correcta": false,
+                            "imagen": ""
+                        }
+                    ]
+                }],
+                "gradosporgrupos": ["5b074186e33fae3a50d579d7"],
+                "materia": "5b074186e33fae3a50d579f5",
+                "tema": "5b074186e33fae3a50d579f1",
+                "publicado": true
             },
             {
                 _id: "5b074186e33fae3a50d579a3",
@@ -195,7 +253,8 @@ var data = [{
                 }],
                 "gradosporgrupos": ["5b074186e33fae3a50d579d9"],
                 "materia": "5b074186e33fae3a50d579f5",
-                "tema": "5b074186e33fae3a50d579f1"
+                "tema": "5b074186e33fae3a50d579f1",
+                "publicado": true
             }
         ]
     },
