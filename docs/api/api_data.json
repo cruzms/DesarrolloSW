@@ -2507,6 +2507,69 @@
   },
   {
     "type": "GET",
+    "url": "/api/retos/consultarRetosEstudiante",
+    "title": "Consultar los retos de un estudiante",
+    "name": "GetRetosEstudiante",
+    "group": "Retos",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "gradoporgrupo",
+            "description": "<p>El gradoporgrupo del estudiante</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "200",
+            "type": "retos[]",
+            "optional": false,
+            "field": "retos",
+            "description": "<p>Lista de retos del estudiante</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "type": "StatusCode",
+            "optional": false,
+            "field": "statuscode",
+            "description": "<p>Código HTTP</p>"
+          },
+          {
+            "group": "400",
+            "type": "Json",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Si ocurre un error en la solicitud</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/retosEstudiante.js",
+    "groupTitle": "Retos"
+  },
+  {
+    "type": "GET",
     "url": "/api/temas/:id",
     "title": "Obtener un tema con un id proporcionado",
     "name": "GetTemaID",
