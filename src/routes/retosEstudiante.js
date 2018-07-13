@@ -10,7 +10,7 @@ const Reto = require('../models/reto');
 /**
  * @api {GET} /api/retos/consultarRetosEstudiante Consultar los retos de un estudiante
  * @apiName GetRetosEstudiante
- * @apiGroup Retos
+ * @apiGroup Reto
  * 
  * @apiParam  {String} gradoporgrupo El gradoporgrupo del estudiante
  * 
